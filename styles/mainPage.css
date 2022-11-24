@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.right{
+    display: flex;
+}
+.main-header{
+    display: flex;
+    background-color: rgba(10, 240, 10, 0.443);
+    padding-top: 30px;
+}
+.items-shourcat{
+    position: absolute;
+    display: flex;
+    justify-content: space-between ;
+    top: 15px;
+    right: 50px;
+    width: 90%;
+    
+}
+.global-nav a{
+    text-decoration: none;
+    color: black; 
+   
+    
+}
+.avatar-icon{
+    width: 30px;
+    height: 18px;
+}
+.bi-person-circle{
+    bottom: 115%;
+    color: black;
+    font-size: 175%;
+}
+.site-logo{
+    position: relative;
+    bottom: 20px;
+    left: 300px;
+    font-size: 175%;
+}
+
+
+
+
