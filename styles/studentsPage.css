@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background: #ebe8e8;
+  overflow: hidden;
+}
+footer {
+  background: #d9d9d9;
+  display: flex;
+  position: relative;
+}
+.title {
+  position: relative;
+  margin: auto;
+  width: 30%;
+  text-align: center;
+  font-size: 130%;
+  font-family: "Secular One", sans-serif;
+}
+.footer-icons {
+  position: absolute;
+  left: 0;
+  display: flex;
+  margin-left: 50px;
+}
+.footer-icons a {
+  margin: 18px;
+  font-size: 140%;
+  color: black;
+}
+.site-logo {
+  font-size: 10%;
+  margin-right: 50px;
+}
+.buttons {
+  position: relative;
+  width: 20%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttons a {
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 30px 60px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  font-size: 120%;
+  text-decoration: none;
+}
+#login {
+  background: #268106;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  padding: 10px 20px;
+}
+#login:hover {
+  cursor: pointer;
+  background: #ffffff;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  color: rgba(27, 92, 4, 0.6);
+}
+#signup {
+  background: #ffffff;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  color: rgba(27, 92, 4, 0.6);
+}
+#signup:hover {
+  cursor: pointer;
+  background: #268106;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+}
+#firstbox {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  left: -90px;
+  top: 260px;
+  background: rgba(89, 223, 7, 0.73);
+  mix-blend-mode: normal;
+  opacity: 0.81;
+  border-radius: 25px;
+  transform: rotate(23.1deg);
+}
+#secondbox {
+  position: absolute;
+  width: 300px;
+  height: 260px;
+  top: 180px;
+  right: -50px;
+  background: rgba(89, 223, 7, 0.93);
+  mix-blend-mode: normal;
+  opacity: 0.81;
+  border-radius: 36px;
+  transform: rotate(-16.44deg);
+}
