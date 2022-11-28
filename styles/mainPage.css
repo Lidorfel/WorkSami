@@ -8,10 +8,14 @@ body{
     overflow: hidden;
     font-family: 'Noto Sans Hebrew', sans-serif;
 }
-
+footer {
+    background: #d9d9d9;
+    display: flex;
+    position: relative;
+  }
 .main-header{
     display: flex;
-    background: rgba(196, 214, 196, 0.81);
+    background:#C4D6C4;
     width: 1920px;
     height: 60px;
     left: 0px;
@@ -95,7 +99,21 @@ nav a{
     left: -70px;
     font-size: 175%;
 }
-
+.footer-icons {
+    position: absolute;
+    left: 0;
+    display: flex;
+    margin-left: 50px;
+  }
+  .footer-icons a {
+    margin: 18px;
+    font-size: 140%;
+    color: black;
+  }
+  .site-logo2{
+    font-size: 10%;
+    margin-right: 50px;
+  }
 #firstbox {
     position: absolute;
     width: 250px;
