@@ -3,61 +3,54 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     background: #EBE8E8;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     font-family: 'Noto Sans Hebrew', sans-serif;
+    
 }
 footer {
     background: #d9d9d9;
     display: flex;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    
   }
+  /*classs*/
 .main-header{
+    position: fixed;
     display: flex;
     background:#C4D6C4;
-    width: 1920px;
+    top: 0;
+    width: 100%;
     height: 60px;
-    left: 0px;
-    top: 2px;
+  
+    
 }
 .items-shourcat {
     position: absolute;
     display: flex;
     justify-content: space-between ;
-    top: 15px;
-    right: 50px;
-    width: 90%;
+    align-items: center;
+    height: 60px;
+    width: 100%;
 }
 nav a{
     font-size: 15px;
-    position: relative;
-    display: inline-block;
     text-decoration: none;
     text-align: center;
     color: #706363;
 }
-.profile-page{
-    right: -40px;
-    height: 20px;
-    bottom: 7px;
-}
-.nav-main{
-    margin-left: 14px;
-    height: 20px;
-    right: -150px;
-}
-.nav-employers{
-    right: -250px;
-    height: 20px;
-}
-.nav-student-grad{
-    right: -350px;
-    height: 20px;
-}
-.nav-contact{
-    right: -450px;
-    height: 20px;
+.mainbaner{
+    position: relative;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+    width: 30%;
+
 }
 .avatar-icon{
     width: 30px;
@@ -73,8 +66,9 @@ nav a{
     align-items: center;
     justify-content: center;
     height: 30vh;
-    font-size: 30px;
+    font-size:45px;
     color: #4A563D;
+    padding: 116px;
 }
 .content-body{
     font-family: 'Guttman Haim';
@@ -85,19 +79,26 @@ nav a{
     height: 0vh;
     text-align: center;
     letter-spacing: 0.03em;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 400;
-    color: #1D861B;;
+    color: #1D861B;
+    padding: 58px;
+    z-index: 25;
+}
+.content-body p{
+    z-index: 15;
 }
 .content-work-sami-logo{
     left: 450px;
     top: 203px;
+   
 }
 .work-sami-logo{
     position: relative;
-    bottom: 15px;
-    left: -70px;
-    font-size: 175%;
+    margin-left: 3%;
+}
+.sce-icon{
+    font-size: .9em;
 }
 .footer-icons {
     position: absolute;
@@ -114,6 +115,59 @@ nav a{
     font-size: 10%;
     margin-right: 50px;
   }
+  .buttons{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+  }
+  .buttons a{
+    font-size: 110%;
+    padding: 10px 15px;
+    border-radius:10px ;
+    margin: 20px 40px;
+  }
+.line1{
+    position: absolute;
+    width: 124px;
+    height: 0px;
+    right: 450px;
+    
+    border: 1 0 0 0 solid #706363;
+    transform: rotate(90.39deg);
+}
+.line2{
+    position: absolute;
+    width: 124px;
+    height: 0px;
+    left: 450px;
+    
+    border: 1 0 0 0 solid #706363;
+    transform: rotate(90.39deg);
+}
+.stats-bar-component{
+    margin: 40px;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: 140%;
+    z-index: 15;
+}
+.jobseeker_stats{
+    width: 13%;
+    text-align: center;
+}
+.company_work_with{
+    width: 13%;
+}
+.job_posted{
+ width: 13%;
+}
+  /*id*/
 #firstbox {
     position: absolute;
     width: 250px;
@@ -167,6 +221,22 @@ nav a{
     transform: rotate(0.44deg);
     animation: fourthb 15s infinite;
   }
+ #employer{
+    background:#227115 ;
+    padding: 10px 42px;
+    border: 2px ;
+    color: black;
+    text-decoration: none;
+ }
+
+ #student-grad{
+    background: #98CA97;
+    padding: 10px 15px;
+    border: 2px ;
+    color: black;
+    text-decoration: none;
+ }
+/*animation*/
 @keyframes secondb{
     0%{
         top: 180px;
