@@ -1,0 +1,336 @@
+/* TAG Selection */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background: #ebe8e8;
+  overflow-x: hidden;
+}
+footer {
+  background: #d9d9d9;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* CLASS Selection */
+
+/*Header*/
+.main-header {
+  position: fixed;
+  display: flex;
+  background: #c4d6c4;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+.items-shourcat {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+}
+nav a {
+  font-family: "Noto Sans Hebrew", sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: center;
+  color: #706363;
+}
+
+.mainbaner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+  margin-right: 20px;
+}
+.avatar-icon {
+  width: 30px;
+  height: 18px;
+}
+.bi-person-circle {
+  bottom: 115%;
+  color: black;
+  font-size: 175%;
+}
+.work-sami-logo {
+  position: relative;
+  margin-left: 3%;
+}
+/*body*/
+.middle-section {
+  padding: 8% 2% 1.7%;
+  position: relative;
+}
+.title {
+  position: relative;
+  margin: auto;
+  width: 35%;
+  text-align: center;
+  font-size: 200%;
+  font-family: "Secular One", sans-serif;
+}
+.buttons {
+  position: relative;
+  width: 20%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttons a {
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 30px 70px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  font-size: 170%;
+  text-decoration: none;
+}
+.footer-icons {
+  position: absolute;
+  left: 0;
+  display: flex;
+  margin-left: 50px;
+}
+.footer-icons a {
+  margin: 20.2px;
+  font-size: 140%;
+  color: black;
+}
+.footer-icons a:nth-child(1):hover {
+  color: rgb(11, 100, 3);
+}
+.footer-icons a:nth-child(2):hover {
+  color: rgb(42, 3, 184);
+}
+.footer-icons a:nth-child(3):hover {
+  color: rgb(179, 88, 2);
+}
+.footer-icons a:nth-child(4):hover {
+  color: rgb(42, 3, 184);
+}
+.site-logo {
+  font-size: 10%;
+  margin-right: 50px;
+}
+/* checkpoints */
+.checkpoints {
+  position: relative;
+  width: 40%;
+  margin: auto;
+  margin-bottom: 10%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.checkpoints div {
+  font-family: "Noto Sans Hebrew", sans-serif;
+  width: 40%;
+  color: #4bae0f;
+  transition: transform 1s;
+}
+.checkpoints div:hover {
+  transform: scale(1.2);
+}
+.checkpoints div i {
+  font-size: 280%;
+}
+.checkpoints div h5 {
+  font-size: 110%;
+}
+/* ID Selection */
+
+#magnify-glass {
+  mix-blend-mode: overlay;
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: 600px;
+  top: 0;
+  z-index: -1;
+}
+#login {
+  background: #268106;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  padding: 10px 20px;
+}
+#login:hover {
+  background: #ffffff;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 10px 20px 20px rgba(10, 99, 2, 0.35);
+
+  color: rgba(27, 92, 4, 0.6);
+}
+#signup {
+  background: #ffffff;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  color: rgba(27, 92, 4, 0.6);
+}
+#signup:hover {
+  background: #268106;
+  border: 2px solid rgba(27, 92, 4, 0.6);
+  box-shadow: 10px 20px 20px rgba(10, 99, 2, 0.35);
+  color: white;
+}
+#firstbox {
+  position: absolute;
+  z-index: -5;
+  width: 250px;
+  height: 250px;
+  left: -90px;
+  top: 260px;
+  background: rgba(89, 223, 7, 0.73);
+  mix-blend-mode: normal;
+  opacity: 0.81;
+  border-radius: 25px;
+  transform: rotate(23.1deg);
+  animation: box1 60s;
+  animation-iteration-count: infinite;
+}
+#secondbox {
+  position: absolute;
+  z-index: -4;
+  width: 300px;
+  height: 260px;
+  top: 180px;
+  right: -50px;
+  background: rgba(89, 223, 7, 0.93);
+  mix-blend-mode: normal;
+  opacity: 0.81;
+  border-radius: 36px;
+  transform: rotate(-16.44deg);
+  animation: box2 60s;
+  animation-iteration-count: infinite;
+}
+#thirdbox {
+  position: absolute;
+  z-index: -3;
+  width: 106px;
+  height: 108px;
+  left: 205px;
+  top: 40px;
+  background: rgba(75, 174, 15, 0.93);
+  mix-blend-mode: normal;
+  opacity: 0.81;
+  border-radius: 27px;
+  animation: box3 60s;
+  animation-iteration-count: infinite;
+}
+#fourthbox {
+  position: absolute;
+  z-index: -2;
+  width: 106px;
+  height: 108px;
+  right: 250px;
+  bottom: 10px;
+  background: rgba(75, 174, 15, 0.93);
+  mix-blend-mode: normal;
+  opacity: 0.65;
+  border-radius: 21px;
+  animation: box4 60s;
+  animation-iteration-count: infinite;
+}
+@keyframes box1 {
+  0% {
+    left: -90px;
+    top: 260px;
+    transform: rotate(23.1deg);
+  }
+  25% {
+    left: 600px;
+    top: 0px;
+    transform: rotate(-18deg);
+  }
+  50% {
+    left: 900px;
+    top: 200px;
+    transform: rotate(-30deg);
+  }
+  75% {
+    left: 900px;
+    top: 600px;
+    transform: rotate(0deg);
+  }
+  100% {
+    left: -90px;
+    top: 260px;
+    transform: rotate(23.1deg);
+  }
+}
+@keyframes box2 {
+  0% {
+    top: 180px;
+    right: -50px;
+    transform: rotate(-16.44deg);
+  }
+  25% {
+    top: 500px;
+    right: 260px;
+    transform: rotate(12deg);
+  }
+  50% {
+    top: 150px;
+    right: 1050px;
+    transform: rotate(30deg);
+  }
+  75% {
+    top: 80px;
+    right: 350px;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 180px;
+    right: -50px;
+    transform: rotate(-16.44deg);
+  }
+}
+@keyframes box3 {
+  0% {
+    left: 205px;
+    top: 40px;
+  }
+  33% {
+    left: 104px;
+    top: 600px;
+  }
+  66% {
+    left: 402px;
+    top: 500px;
+  }
+  100% {
+    left: 205px;
+    top: 40px;
+  }
+}
+@keyframes box4 {
+  0% {
+    right: 250px;
+    bottom: 10px;
+  }
+  33% {
+    right: 125px;
+    bottom: 500px;
+  }
+  66% {
+    right: 370px;
+    bottom: 450px;
+  }
+  100% {
+    right: 250px;
+    bottom: 10px;
+  }
+}
