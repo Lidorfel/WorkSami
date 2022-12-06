@@ -14,7 +14,7 @@ body{
 footer {
     background: #d9d9d9;
     display: flex;
-    position: fixed;
+    position:relative;
     width: 100%;
     bottom: 0;
     
@@ -22,13 +22,16 @@ footer {
   /*classs*/
 .main-header{
     position: fixed;
+    z-index: 1;
     display: flex;
     background:#C4D6C4;
+    transition-property: margin-right;
+    transition-duration: 3s, 1s;
     top: 0;
     width: 100%;
     height: 60px;
-  
-    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    z-index: 15;
 }
 .items-shourcat {
     position: absolute;
@@ -43,12 +46,15 @@ nav a{
     text-decoration: none;
     text-align: center;
     color: #706363;
+    font-family: "Noto Sans Hebrew",sans-serif;
+
 }
 .mainbaner{
     position: relative;
     display: flex;
     justify-content: space-between ;
     align-items: center;
+    margin-right: 20px;
     width: 30%;
 
 }
@@ -65,13 +71,14 @@ nav a{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Secular one",sans-serif;
     height: 30vh;
     font-size:45px;
     color: #4A563D;
     padding: 116px;
 }
 .content-body{
-    font-family: 'Guttman Haim';
+    font-family: "Secular one",sans-serif;
     font-style: normal;
     display: flex;
     align-items: center;
@@ -86,7 +93,7 @@ nav a{
     z-index: 25;
 }
 .content-body p{
-    z-index: 15;
+    /* z-index: 15; */
 }
 .content-work-sami-logo{
     left: 450px;
@@ -111,6 +118,18 @@ nav a{
     font-size: 140%;
     color: black;
   }
+  .footer-icons a:nth-child(1):hover {
+    color: rgb(11, 100, 3);
+  }
+  .footer-icons a:nth-child(2):hover {
+    color: rgb(42, 3, 184);
+  }
+  .footer-icons a:nth-child(3):hover {
+    color: rgb(179, 88, 2);
+  }
+  .footer-icons a:nth-child(4):hover {
+    color: rgb(42, 3, 184);
+  }
   .site-logo2{
     font-size: 10%;
     margin-right: 50px;
@@ -128,24 +147,6 @@ nav a{
     border-radius:10px ;
     margin: 20px 40px;
   }
-.line1{
-    position: absolute;
-    width: 124px;
-    height: 0px;
-    right: 450px;
-    
-    border: 1 0 0 0 solid #706363;
-    transform: rotate(90.39deg);
-}
-.line2{
-    position: absolute;
-    width: 124px;
-    height: 0px;
-    left: 450px;
-    
-    border: 1 0 0 0 solid #706363;
-    transform: rotate(90.39deg);
-}
 .stats-bar-component{
     margin: 40px;
     height: 150px;
@@ -155,18 +156,82 @@ nav a{
     justify-content: space-evenly;
     text-align: center;
     font-size: 140%;
-    z-index: 15;
+    z-index: 5px;
 }
 .jobseeker_stats{
+    border-style: solid;
+    border-width: 0 0 0 2px;
     width: 13%;
     text-align: center;
 }
 .company_work_with{
+   
     width: 13%;
 }
 .job_posted{
- width: 13%;
+    border-style: solid;
+    border-width: 0 2px 0 0;
+    width: 13%;
 }
+.photos{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    margin-bottom: 20px;
+}
+.photos img{
+width: 300px;
+height: 400px;
+object-fit: cover;
+border-radius: 20px;
+}
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1.2s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 20px;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+  }
+  
+  .flip-card-front {
+    background-color: #EBE8E8;
+    color: black;
+    border-radius: 20px;
+  }
+  
+  .flip-card-back {
+    background-color: #C4D6C4;
+    color: #706363;
+    font-size: 130%;
+    transform: rotateY(180deg);
+    padding: 0 10px;
+    border-radius: 20px;
+  }
   /*id*/
 #firstbox {
     position: absolute;
@@ -221,20 +286,41 @@ nav a{
     transform: rotate(0.44deg);
     animation: fourthb 15s infinite;
   }
- #employer{
-    background:#227115 ;
-    padding: 10px 42px;
-    border: 2px ;
-    color: black;
-    text-decoration: none;
- }
+  #employer{
+    text-decoration-line: none;
+    background: #268106;
+    border: 2px solid rgba(27, 92, 4, 0.6);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    padding: 10px 20px;
+
+}
 
  #student-grad{
-    background: #98CA97;
-    padding: 10px 15px;
-    border: 2px ;
-    color: black;
-    text-decoration: none;
+     background: #ffffff;
+     border: 2px solid rgba(27, 92, 4, 0.6);
+     text-decoration-line: none;
+     color: rgba(27, 92, 4, 0.6);
+}
+ #student-grad:hover{
+    background: #268106;
+    border: 2px solid rgba(27, 92, 4, 0.6);
+    /* box-shadow: 10px 20px 20px rgba(10, 99, 2, 0.35); */
+    color: white; 
+}
+ #employer:hover{
+   
+    background: #ffffff;
+    border: 2px solid rgba(27, 92, 4, 0.6);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    color: #268106;
+}
+ #our-team{
+    font-family: "Secular one",sans-serif;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 400;
+    color: #1D861B;
  }
 /*animation*/
 @keyframes secondb{
