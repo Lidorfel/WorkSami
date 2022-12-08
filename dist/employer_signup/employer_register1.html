@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WorkSami - Find Your Job</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew&family=Secular+One&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="/styles/login.css" />
+  <link rel="stylesheet" href="/styles/employer_register1.css" />
 </head>
 
 <body dir="rtl">
@@ -68,29 +68,47 @@
           fill="#8E7A7A" />
       </svg>
     </div>
-    <div class="login_form">
-      <div class="green_box">
-        <i class="bi bi-mortarboard"></i>
+    <div class="register_form">
+      <div class="input_details">
+        <h2 class="RgisterInfo">מגייסים</h2>
+        <div class="inputd">
+          <label>שם מלא</label>
+          <input type="text" id="name_register" class="name_register" />
+        </div>
+        <div class="inputd">
+          <label>תעודת זהות</label>
+          <input type="number" id="id_user" class="id_user" autocomplete="username" autocapitalize="none" required="" />
+          <div class="inputd">
+            <label>סיסמה</label>
+            <input type="password" id="user_pass" class="user_pass" autocomplete="username" autocapitalize="none"
+              required="" />
+          </div>
+          <div class="inputd">
+            <label>מספר טלפון</label>
+            <input type="tel" placeholder="123-4567890" id="phone_user" class="phone_user" autocomplete="username"
+              autocapitalize="none" required="" />
+          </div>
+          <div class="inputd">
+            <label>איימיל</label>
+            <input type="email" id="email_user" class="email_user" autocomplete="username" autocapitalize="none"
+              required="" />
+          </div>
+        </div>
+        <div class="bottom_things">
+          <div class="circle_page">
+            <i class="bi bi-circle-fill"></i>
+            <i class="bi bi-circle"></i>
+          </div>
+          <div class="employer_submit_1" id="employer_submit_1">
+
+            <label>המשך</label>
+            <a href="employer_register2.html"><i class="bi bi-arrow-left-circle"></i></a>
+          </div>
+        </div>
       </div>
-      <form id="signin" class="details_login" action="/dist/StudentRegister.html" method="get" target="_blank">
-        <div class="input_details">
-          <h4 class="have_user">משתמש רשום</h4>
-          <input placeholder="איימיל" type="email" id="user_email" class="email_user" required="" />
-          <input placeholder="סיסמא" type="password" id="user_pass" class="id_user" autocomplete="username"
-            autocapitalize="none" required="" />
-          <i class="bi bi-eye-fill"></i>
-          <h5 class="forgot_pass">
-            שכחת את הסיסמה?
-            <a href="">לחץ כאן</a>
-          </h5>
-        </div>
-        <div class="buttons">
-          <button type="submit" class="login" id="login_button">התחבר</button>
-          <button class="new_user_name">משתמש חדש</button>
-        </div>
-      </form>
-    </div>
+      <label class="sentence">"העתיד שלך מתחיל אצלנו"</label>
   </section>
+
   <footer>
     <a href="">
       <svg class="site-logo" width="150" height="62" viewBox="0 0 316 126" fill="none"
@@ -116,7 +134,7 @@
       <a href=""><i class="bi bi-linkedin"></i></a>
     </div>
   </footer>
-  <script src="bundle.js"></script>
+  <script src="../bundle.js"></script>
 </body>
 
 </html>
