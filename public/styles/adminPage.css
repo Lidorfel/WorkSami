@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-color: #ebe8e8;
+  text-align: center;
+}
+.main-header {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  display: flex;
+  background: #c4d6c4;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 15;
+}
+.items-shourcat {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+}
+nav a {
+  font-family: "Noto Sans Hebrew", sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: center;
+  color: #706363;
+}
+.mainbaner {
+  margin-right: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55%;
+}
+.avatar-icon {
+  width: 30px;
+  height: 18px;
+}
+.bi-person-circle {
+  bottom: 115%;
+  color: black;
+  font-size: 175%;
+}
+.work-sami-logo {
+  position: relative;
+  margin-left: 3%;
+}
+.logout {
+  cursor: pointer;
+  background: #b43e31;
+  border-radius: 10px;
+  font-family: "Noto Sans Hebrew";
+  color: white;
+  border: 0;
+  padding: 5px 10px;
+  font-size: 15px;
+  right: 100px;
+}
+.logout:hover {
+  color: #b43e31;
+  background-color: transparent;
+  border: 1px solid #b43e31;
+}
+.page-body {
+  position: relative;
+}
+.jobs {
+  margin: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 3% 10%;
+  margin-bottom: 4%;
+  gap: 80px;
+}
+.add_job {
+  display: flex;
+  position: relative;
+  margin: 8% auto 3%;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  width: 46%;
+  background-color: rgba(39, 138, 39, 0.596);
+  border-radius: 15px;
+  border: 3px solid black;
+  z-index: 10;
+}
+.works {
+  border-radius: 60px;
+  width: 300px;
+  height: 300px;
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.up_part {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  justify-content: space-evenly;
+}
+.up_part button {
+  font-size: 22px;
+  border: 0px;
+  background-color: transparent;
+}
+.up_part button:hover {
+  color: green;
+  cursor: pointer;
+  border: 0px;
+  background-color: transparent;
+}
+.add_job input {
+  width: 400px;
+  justify-content: space-evenly;
+  border-radius: 60px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+.selection select {
+  width: 200px;
+  justify-content: space-evenly;
+  border-radius: 60px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  cursor: pointer;
+}
+.selection {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.add_pro_select {
+  display: flex;
+  flex-direction: column;
+}
+.button_add {
+  width: 100px;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+.button_add:hover {
+  cursor: pointer;
+}
+.middle_part {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  width: 100%;
+  align-items: flex-start;
+  margin-right: 10px;
+  margin-bottom: 40px;
+}
+.bottom_part {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+.bottom_part i {
+  font-size: 30px;
+}
+.icon_buttons {
+  border: 0px;
+  background-color: transparent;
+}
+.see_candidates {
+  background-color: green;
+  border-radius: 20px;
+  width: 80px;
+  padding: 0 5px;
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.middle_part p {
+  font-size: 14px;
+}
+.icon_buttons:nth-child(3):hover {
+  color: green;
+  cursor: pointer;
+}
+.icon_buttons:nth-child(2) :hover {
+  color: rgb(42, 3, 184);
+  cursor: pointer;
+}
+footer {
+  background: #d9d9d9;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer-icons {
+  position: absolute;
+  left: 0;
+  display: flex;
+  margin-left: 50px;
+}
+.footer-icons a {
+  margin: 18px;
+  font-size: 140%;
+  color: black;
+}
+.site-logo {
+  font-size: 10%;
+  margin-right: 50px;
+}
+.footer-icons a:nth-child(1):hover {
+  color: rgb(11, 100, 3);
+}
+.footer-icons a:nth-child(2):hover {
+  color: rgb(42, 3, 184);
+}
+.footer-icons a:nth-child(3):hover {
+  color: rgb(179, 88, 2);
+}
+.footer-icons a:nth-child(4):hover {
+  color: rgb(42,  3,  184);
+}
