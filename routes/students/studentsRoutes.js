@@ -19,18 +19,24 @@ router.get("/loginSt", (req, res) => {
 //router for loginstudnt
 
 router.post("/loginSt", async (req, res) => {
-  student
-    .findOne({ email: req.body.email })
-    .then((user) => {
-      if (user.password === req.body.password) {
-        res.redirect(`/students/${user._id}`);
-      } else {
-        res.redirect("/404");
-      }
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+  try {
+    student
+      .findOne({ email: req.body.email })
+      .then((user) => {
+        if (user.password === req.body.password) {
+          res.redirect(`/students/${user._id}`);
+        } else {
+          res.redirect("/404");
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  } catch {
+    (err) => {
+      res.sendStatus(404);
+    };
+  }
 });
 
 router.get("/:id", (req, res) => {

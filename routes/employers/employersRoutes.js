@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const employer = require("../../models/employers");
 
 //employers
@@ -20,7 +21,6 @@ router.post("/loginEm", async (req, res) => {
       console.log(user.password, req.body.password);
       if (user.password === req.body.password) {
         if (user.isadmin === true) {
-          console.log("testadmin");
           res.redirect("/admin");
         } else {
           res.redirect(`/employers/${user._id}`);

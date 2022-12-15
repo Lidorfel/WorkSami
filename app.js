@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "html");
 app.use(express.static(path.join(__dirname, "public")));
 // app.use(bodyParser.json);
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.render("mainPage");
@@ -92,4 +92,4 @@ app.use((req, res) => {
 });
 mongoose.set("strictQuery", true);
 
-module.exports = db;
+module.exports = { db, app };
