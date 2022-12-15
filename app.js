@@ -12,7 +12,6 @@ const dbURI =
   "mongodb+srv://bugab:test1234@worksami.1vddn1h.mongodb.net/WorkSamiweb?retryWrites=true&w=majority";
 var db = mongoose.connection;
 mongoose.set("strictQuery", false);
-const studentRegister = require("./functions/registerStudents");
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((res) => {
