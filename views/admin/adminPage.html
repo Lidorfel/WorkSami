@@ -35,9 +35,20 @@
           <a class="nav-approve-users" href="/approveUsers"> אישור משתמשים </a>
           <a class="nav-approve-jobs" href="/approveJobs"> אישור משרות </a>
           <a class="nav-all-users" href="/allUsers"> כלל המשתמשים </a>
-          <button class="logout">
-            התנתק <i class="bi bi-box-arrow-left"></i>
-          </button>
+          <form action="/employers/admin" method="post">
+            <button class="logout">
+              התנתק <i class="bi bi-box-arrow-left"></i>
+              <script type="text/javascript">
+                function preventBack() {
+                  window.history.forward();
+                }
+                setTimeout("preventBack()", 0);
+                window.onunload = function () {
+                  null;
+                };
+              </script>
+            </button>
+          </form>
         </div>
         <div class="work-sami-logo">
           <svg
@@ -426,6 +437,6 @@
         <a href=""><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
-     
+    <script src="index.js"></script>
   </body>
 </html>
