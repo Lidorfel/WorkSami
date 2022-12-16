@@ -4,6 +4,7 @@ const sessions = require("../../app").sessions;
 const router = express.Router();
 const student = require("../../models/Students");
 let session;
+
 // var db = require("../../app");
 // const User = require("../../models/User");
 //students
@@ -58,7 +59,6 @@ router.post("/loginSt", async (req, res) => {
         if (user.password === req.body.password) {
           session = req.session;
           session.userid = req.body.email;
-          console.log(session);
           res.redirect("/students/studentsUpdate");
         } else {
           res.redirect("/404");
@@ -66,10 +66,11 @@ router.post("/loginSt", async (req, res) => {
       })
       .catch((err) => {
         console.log(err.message);
+        res.redirect("/404");
       });
   } catch {
     (err) => {
-      res.sendStatus(404);
+      res.sendStatus("/404");
     };
   }
 });
@@ -78,29 +79,19 @@ router.post("/loginSt", async (req, res) => {
 
 router.post("/studentsUpdate", (req, res) => {
   console.log(session.userid);
-
-  student
-    .findOne({ email: session.userid })
-    .then((user) => {
-      student.db.collection("students").updateOne(
-        { _id: user._id },
-        {
-          $set: {
-            password: req.body.new_password,
-            phone: req.body.phone_number,
-            email: req.body.email,
-            status: req.body.study_year,
-            avg: req.body.grades,
-          },
-        }
-      );
-      console.log("found");
-      res.redirect("/students/studentsUpdate");
-    })
-    .catch((err) => {
-      console.log("not found");
-      res.redirect("/404");
-    });
+  student.db.collection("students").updateOne(
+    { email: session.userid },
+    {
+      $set: {
+        password: req.body.new_password,
+        phone: req.body.phone_number,
+        email: req.body.email,
+        status: req.body.study_year,
+        avg: req.body.grades,
+      },
+    }
+  );
+  res.redirect("/students/studentsUpdate");
 });
 
 //post method
