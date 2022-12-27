@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+const cons = require("consolidate");
 const express = require("express");
 const router = express.Router();
 const cookieParser = require("../../app").cookieParser;
@@ -96,8 +98,38 @@ router.post("/employersLoggedinPage", async (req, res) => {
 router.get("/employersLoggedinPage", (req, res) => {
   res.render("./employers/employersLoggedinPage");
 });
-//admin routes
 
+router.get("/employersUpdate", (req, res) => {
+  res.render("./employers/employersUpdate");
+});
+router.post("/employersUpdate", (req, res) => {
+  console.log(session.userid);
+  const updObject = {};
+  if (req.body.new_password) {
+    updObject["password"] = req.body.new_password;
+  }
+  if (req.body.phone_number) {
+    updObject["phone"] = req.body.phone_number;
+  }
+  if (req.body.email) {
+    updObject["email"] = req.body.email;
+  }
+  if (req.body.urlcomapny) {
+    updObject["urlcompany"] = req.body.urlcompany;
+  }
+  if (req.body.linkedin) {
+    updObject["linkedin"] = req.body.linkedin;
+  }
+  console.log(updObject);
+  employer.db.collection("employers").updateOne(
+    { email: session.userid },
+    {
+      $set: updObject,
+    }
+  );
+  res.redirect("/employers/employersloggedinpage");
+});
+//admin routes
 router.get("/admin", (req, res) => {
   if (session) {
     res.render("./admin/adminPage");
@@ -106,8 +138,63 @@ router.get("/admin", (req, res) => {
   }
 });
 router.post("/admin", (req, res) => {
-  req.session.destroy();
-  session = req.session;
-  res.redirect("./");
+  if ("logout-admin" in req.body) {
+    req.session.destroy();
+    session = req.session;
+    res.redirect("./");
+  } else if ("newJob-admin" in req.body) {
+    console.log("else-newjob");
+    job.db
+      .collection("jobs")
+      .insertOne({
+        companyName: req.body.name_job,
+        description: req.body.describe_job,
+        profession: req.body.job_type,
+        location: req.body.location,
+        approved: false,
+        candidates: [],
+      })
+      .then((newJob) => {
+        console.log("new job");
+        employer.db
+          .collection("employers")
+          .updateOne(
+            { email: "worksami@gmail.com" },
+            { $push: { jobsPosted: newJob.insertedId } }
+          );
+        res.redirect("/employers/admin");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 });
+
+//admin new job
+// router.post("/admin", async (req, res) => {
+//   console.log(req.body);
+//   job.db
+//     .collection("jobs")
+//     .insertOne({
+//       companyName: req.body.name_job,
+//       description: req.body.describe_job,
+//       profession: req.body.job_type,
+//       location: req.body.location,
+//       approved: false,
+//       candidates: [],
+//     })
+//     .then((newJob) => {
+//       console.log("new job");
+//       employer.db
+//         .collection("employers")
+//         .updateOne(
+//           { email: 'worksami@gmail.com' },
+//           { $push: { jobsPosted: newJob.insertedId } }
+//         );
+//       res.redirect("/employers/admin");
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//     });
+// });
 module.exports = router;

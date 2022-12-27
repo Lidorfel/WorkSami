@@ -36,7 +36,7 @@
           <a class="nav-approve-jobs" href="/approveJobs"> אישור משרות </a>
           <a class="nav-all-users" href="/allUsers"> כלל המשתמשים </a>
           <form action="/employers/admin" method="post">
-            <button class="logout">
+            <button class="logout" name="logout-admin" type="submit">
               התנתק <i class="bi bi-box-arrow-left"></i>
               <script type="text/javascript">
                 function preventBack() {
@@ -79,7 +79,7 @@
       </nav>
     </header>
     <section class="page-body">
-      <form class="add_job">
+      <form class="add_job" method="post" action="./admin">
         <h1 style="color: black">הוספת עבודה:</h1>
         <label>שם החברה</label>
         <div class="add_pro">
@@ -98,309 +98,35 @@
           <div class="add_pro_select">
             <label for="job_type"> תחום עיסוק</label>
             <select name="job_type" id="job_type" class="job_type">
-              <option value="">הנדסת תוכנה</option>
-              <option value="">הנדסת חשמל</option>
-              <option value="">הנדסת תעשיה וניהול</option>
-              <option value="">הנדסת בניין</option>
-              <option value="">מדעי המחשב</option>
-              <option value="">אדריכלות</option>
-              <option value="">תקשורת חזותית</option>
+              <option>הנדסת תוכנה</option>
+              <option>הנדסת חשמל</option>
+              <option>הנדסת תעשיה וניהול</option>
+              <option>הנדסת בניין</option>
+              <option>מדעי המחשב</option>
+              <option>אדריכלות</option>
+              <option>תקשורת חזותית</option>
             </select>
           </div>
           <div class="add_pro_select">
             <label for="location"> מיקום </label>
             <select name="location" id="location" class="location">
-              <option value="">איזור הדרום</option>
-              <option value="">איזור המרכז</option>
-              <option value="">איזור הצפון</option>
-              <option value="">איזור השפלה</option>
+              <option>איזור הדרום</option>
+              <option>איזור המרכז</option>
+              <option>איזור הצפון</option>
+              <option>איזור השפלה</option>
             </select>
           </div>
         </div>
-        <button id="button_add" class="button_add">הוספת משרה +</button>
+        <button
+          id="button_add"
+          class="button_add"
+          type="submit"
+          name="newJob-admin"
+        >
+          הוספת משרה +
+        </button>
       </form>
-      <div class="jobs">
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job">שם המשרה</h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
-          </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description">תיאור המשרה היא..</p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type">תחום העיסוק הוא......</p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction">מיקום העבודה היא...</p>
-          </div>
-          <div class="bottom_part">
-            <button class="see_candidates">ראה מועמדים</button>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      <div class="jobs"></div>
     </section>
     <footer>
       <a href="">
@@ -437,6 +163,6 @@
         <a href=""><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
-    <script src="index.js"></script>
+    <script src="/presentJobs.js"></script>
   </body>
 </html>
