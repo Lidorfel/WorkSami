@@ -17,6 +17,13 @@ router.get("/registerEm", (req, res) => {
 router.get("/loginEm", (req, res) => {
   res.render("./employers/employersLogin");
 });
+router.get("/employersLoggedinPage", (req, res) => {
+  if (session) {
+    res.render("./employers/employersLoggedinPage");
+  } else {
+    res.redirect("./");
+  }
+});
 router.post("/registerEm", async (req, res) => {
   employer.db
     .collection("employers")
@@ -65,7 +72,11 @@ router.post("/loginEm", async (req, res) => {
       console.log(err.message);
     });
 });
-
+router.post("/logoutemployer", (req, res) => {
+  req.session.destroy();
+  session = req.session;
+  res.redirect("./");
+});
 //post in job
 router.post("/employersLoggedinPage", async (req, res) => {
   console.log(req.body);
@@ -95,9 +106,7 @@ router.post("/employersLoggedinPage", async (req, res) => {
       console.log(err.message);
     });
 });
-router.get("/employersLoggedinPage", (req, res) => {
-  res.render("./employers/employersLoggedinPage");
-});
+
 //admin routes
 
 router.get("/admin", (req, res) => {

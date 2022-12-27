@@ -48,6 +48,10 @@ const StudentSchema = new Schema(
       type: String,
       required: true,
     },
+    findjob: {
+      type: Boolean,
+      require: true,
+    },
   },
   { timestamps: true }
 );

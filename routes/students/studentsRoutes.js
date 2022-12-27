@@ -22,9 +22,21 @@ router.get("/loginSt", (req, res) => {
 //router for update
 router.get("/studentsUpdate", (req, res) => {
   // const id = req.params.id;
-  res.render("./students/studentsUpdate");
+  if (session) {
+    console.log("befor update");
+    res.render("./students/studentsUpdate");
+  } else {
+    res.redirect("./");
+  }
 });
-
+router.get("/studentMainPage", (req, res) => {
+  // const id = req.params.id;
+  if (session) {
+    res.render("./students/studentMainPage");
+  } else {
+    res.redirect("./");
+  }
+});
 router.post("/registerSt", async (req, res) => {
   student.db
     .collection("students")
@@ -59,7 +71,8 @@ router.post("/loginSt", async (req, res) => {
           session = req.session;
           session.userid = req.body.email;
           console.log(session);
-          res.redirect("/students/studentsUpdate");
+          console.log("befor login");
+          res.redirect("/students/studentMainPage");
         } else {
           res.redirect("/404");
         }
@@ -73,7 +86,12 @@ router.post("/loginSt", async (req, res) => {
     };
   }
 });
+router.post("/logout", (req, res) => {
+  req.session.destroy();
+  session = req.session;
 
+  res.redirect("./");
+});
 //student update
 
 router.post("/studentsUpdate", (req, res) => {
