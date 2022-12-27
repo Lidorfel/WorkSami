@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main-header {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  display: flex;
+  background: #c4d6c4;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 15;
+}
+.items-shourcat {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+}
+.add_pro_select {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+nav a {
+  font-family: "Noto Sans Hebrew", sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: center;
+  color: #706363;
+}
+.mainbaner {
+  margin-right: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+}
+.avatar-icon {
+  width: 30px;
+  height: 18px;
+}
+.bi-person-circle {
+  bottom: 115%;
+  color: black;
+  font-size: 175%;
+}
+.logout {
+  cursor: pointer;
+  background: #b43e31;
+  border-radius: 10px;
+  font-family: "Noto Sans Hebrew";
+  color: white;
+  border: 0;
+  padding: 5px 10px;
+  font-size: 15px;
+  right: 100px;
+}
+.logout:hover {
+  color: #b43e31;
+  background-color: transparent;
+  border: 1px solid #b43e31;
+}
+
+.work-sami-logo {
+  position: relative;
+  margin-left: 3%;
+}
+body {
+  position: relative;
+  background-color: #ebe8e8;
+}
+
+.candidate {
+  border-spacing: 15px;
+}
+.conteiner {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: auto;
+}
+.studentUsers {
+  display: flex;
+  position: relative;
+  margin: 8% auto 3%;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  width: 41%;
+  background-color: #ebe8e8;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 15px;
+  border: 3px solid black;
+  z-index: 10;
+  text-align: center;
+}
+.table_candidate {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  justify-content: space-evenly;
+  background-color: green;
+  width: 70%;
+  border-radius: 38px;
+  border: 2px solid black;
+}
+.caption {
+  font-size: 160%;
+}
+
+.middle_part p {
+  font-size: 14px;
+}
+.icon_buttons:nth-child(3):hover {
+  color: green;
+  cursor: pointer;
+}
+.icon_buttons:nth-child(2) :hover {
+  color: rgb(42, 3, 184);
+  cursor: pointer;
+}
+
+footer {
+  background: #d9d9d9;
+  display: flex;
+  position: static;
+  bottom: 0;
+  width: 100%;
+}
+.footer-icons {
+  position: absolute;
+  left: 0;
+  display: flex;
+  margin-left: 50px;
+}
+
+.footer-icons a {
+  margin: 18px;
+  font-size: 140%;
+  color: black;
+}
+.site-logo {
+  font-size: 10%;
+  margin-right: 50px;
+}
+.footer-icons a:nth-child(1):hover {
+  color: rgb(11, 100, 3);
+}
+.footer-icons a:nth-child(2):hover {
+  color: rgb(42, 3, 184);
+}
+.footer-icons a:nth-child(3):hover {
+  color: rgb(179, 88, 2);
+}
+.footer-icons a:nth-child(4):hover {
+  color: rgb(42, 3, 184);
+}

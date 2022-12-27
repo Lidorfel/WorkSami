@@ -39,7 +39,7 @@ nav a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 35%;
 }
 .avatar-icon {
   width: 30px;
@@ -74,163 +74,146 @@ nav a {
 body {
   position: relative;
   background-color: #ebe8e8;
-  text-align: center;
 }
 .page_body {
   margin-top: 85px;
   display: flex;
   position: relative;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
-.register_form {
-  background-color: #1aad17;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 60px;
+.add_job {
+  display: flex;
   position: relative;
-  width: 569px;
-  height: 341px;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  width: 46%;
+  background-color: rgba(39, 138, 39, 0.596);
+  border-radius: 15px;
+  border: 3px solid black;
+}
+.add_job input {
+  width: 400px;
+  justify-content: space-evenly;
+  border-radius: 60px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+.selection select {
+  width: 200px;
+  justify-content: space-evenly;
+  border-radius: 60px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+.selection {
+  display: flex;
+  position: relative;
+  flex-direction: row;
   margin-bottom: 10px;
 }
-.RgisterInfo {
-  font-family: "Noto Sans Hebrew", sans-serif;
-  font-weight: 400;
-  font-size: 23px;
-  text-align: center;
-  text-decoration: underline;
-  color: white;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.input_details {
-  display: flex;
-  margin: auto;
-  position: relative;
-  flex-direction: column;
+.button_add {
+  width: 100px;
   justify-content: space-evenly;
-  align-content: space-around;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+.button_add:hover {
+  cursor: pointer;
+}
+.all_jobs {
   width: 80%;
-  height: 84%;
-}
-.input_details input {
-  width: 464px;
-  height: 29px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.input_details .inputd {
-  display: flex;
+  display: grid;
   position: relative;
-  flex-direction: column;
-}
-.input_details .inputd label {
-  color: white;
-  position: relative;
-  display: flex;
-  right: 0;
+  grid-template-columns: auto auto auto;
+  gap: 80px;
+  margin-top: 30px;
   font-family: "Noto Sans Hebrew", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
 }
-.bottom_things {
+.works {
+  border-radius: 60px;
+  width: 300px;
+  height: 300px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 4%;
+}
+.up_part {
   display: flex;
   position: relative;
   flex-direction: row;
-  align-items: flex-end;
-}
-.circle_page {
-  width: 18%;
-  margin: auto;
-  margin-top: 15px;
-  margin-left: 90px;
-  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
   justify-content: space-evenly;
 }
-.study_year {
-  width: 220px;
-  height: 29px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.up_part button {
+  font-size: 22px;
+  border: 0px;
+  background-color: transparent;
 }
-.two_things {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-left: -8px;
-}
-.two_things label {
-  font-family: "Noto Sans Hebrew", sans-serif;
-  font-size: 16px;
-  align-items: right;
-  color: white;
-}
-.two_things input {
-  width: 220px;
-  align-content: space-around;
+.up_part button :hover {
+  color: red;
+  cursor: pointer;
+  border: 0px;
+  background-color: transparent;
 }
 
-.two_things .linkedin {
+.middle_part {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: space-around;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  width: 100%;
+  align-items: flex-start;
   margin-right: 10px;
+  margin-bottom: 40px;
 }
-.circle_page i {
-  font-size: 20px;
-}
-.employer_submit_2 {
-  position: relative;
-  flex-direction: row;
-  margin: 10px auto 0;
-}
-.employer_submit_2 label {
-  padding-left: 5px;
-  font-size: 18px;
-  color: white;
-  font-family: "Noto Sans Hebrew", sans-serif;
-}
-.employer_submit_2 i {
-  font-size: 25px;
-  color: white;
-}
-.findajob {
+.bottom_part {
   display: flex;
   position: relative;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  font-family: "Noto Sans Hebrew", sans-serif;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
+  justify-content: center;
+  justify-content: space-evenly;
 }
-.findajob label {
-  color: white;
-  font-family: "Noto Sans Hebrew", sans-serif;
+.bottom_part i {
+  font-size: 30px;
 }
-.update_button {
+.icon_buttons {
+  border: 0px;
   background-color: transparent;
-  border: 0;
+}
+.send_applied {
+  background-color: green;
+  border-radius: 20px;
+  width: 80px;
+  padding: 0 5px;
+  color: black;
+  border: 1px solid black;
   cursor: pointer;
-  color: white;
-  font-size: 20px;
-  padding: 3px 7px;
-  border: 1px solid white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.sentence {
-  font-size: 15px;
-  font-family: "Noto Sans Hebrew", sans-serif;
+.middle_part p {
+  font-size: 14px;
 }
+.icon_buttons:nth-child(3):hover {
+  color: green;
+  cursor: pointer;
+}
+.icon_buttons:nth-child(2) :hover {
+  color: rgb(42, 3, 184);
+  cursor: pointer;
+}
+
 footer {
   background: #d9d9d9;
   display: flex;
-  position: fixed;
+  position: static;
   bottom: 0;
   width: 100%;
 }
@@ -240,6 +223,7 @@ footer {
   display: flex;
   margin-left: 50px;
 }
+
 .footer-icons a {
   margin: 18px;
   font-size: 140%;

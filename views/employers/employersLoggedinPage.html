@@ -41,9 +41,20 @@
             צור קשר
             <i class="bi bi-telephone"></i>
           </a>
-          <button class="logout">
-            התנתק <i class="bi bi-box-arrow-left"></i>
-          </button>
+          <form action="/employers/logoutemployer" method="post">
+            <button class="logout">
+              התנתק <i class="bi bi-box-arrow-left"></i>
+              <script type="text/javascript">
+                function preventBack() {
+                  window.history.forward();
+                }
+                setTimeout("preventBack()", 0);
+                window.onunload = function () {
+                  null;
+                };
+              </script>
+            </button>
+          </form>
         </div>
         <div class="work-sami-logo">
           <svg
