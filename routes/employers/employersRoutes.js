@@ -80,8 +80,6 @@ router.post("/logoutemployer", (req, res) => {
 //post in job
 router.post("/employersLoggedinPage", async (req, res) => {
   console.log(req.body);
-  var created = 0;
-  let ID = "";
   job.db
     .collection("jobs")
     .insertOne({
