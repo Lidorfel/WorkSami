@@ -197,6 +197,21 @@ body {
   font-size: 25px;
   color: white;
 }
+.findajob {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+}
+.findajob label {
+  color: white;
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
 .update_button {
   background-color: transparent;
   border: 0;

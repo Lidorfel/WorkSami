@@ -24,7 +24,6 @@ router.get("/loginSt", (req, res) => {
 router.get("/studentsUpdate", (req, res) => {
   // const id = req.params.id;
   if (session) {
-    console.log("befor update");
     res.render("./students/studentsUpdate");
   } else {
     res.redirect("./");
@@ -97,18 +96,35 @@ router.post("/logout", (req, res) => {
 
 router.post("/studentsUpdate", (req, res) => {
   console.log(session.userid);
+  const updObj = {};
+  if (req.body.new_password) {
+    updObj["password"] = req.body.new_password;
+  }
+  if (req.body.phone_number) {
+    updObj["phone"] = req.body.phone_number;
+  }
+  if (req.body.email) {
+    updObj["email"] = req.body.email;
+  }
+  if (req.body.study_year) {
+    updObj["status"] = req.body.study_year;
+  }
+  if (req.body.avrage_grade) {
+    updObj["avg"] = req.body.avrage_grade;
+  }
+  if (req.body.findajob === "yes") {
+    updObj["findjob"] = true;
+  } else if (req.body.findajob === "no") {
+    updObj["findjob"] = false;
+  }
+  console.log(updObj);
   student.db.collection("students").updateOne(
     { email: session.userid },
     {
-      $set: {
-        password: req.body.new_password,
-        phone: req.body.phone_number,
-        email: req.body.email,
-        status: req.body.study_year,
-        avg: req.body.grades,
-      },
+      $set: updObj,
     }
   );
+
   res.redirect("/students/studentsUpdate");
 });
 

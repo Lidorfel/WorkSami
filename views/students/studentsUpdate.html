@@ -82,21 +82,21 @@
           fill="#8E7A7A" />
       </svg>
     </div>
-    <form method="get" action="/students/studentsUpdate" class="register_form">
+    <form method="post" action="/students/studentsUpdate" class="register_form">
       <div class="input_details">
         <h2 class="RgisterInfo">עדכון פרטים - סטודנטים</h2>
 
         <div class="inputd">
           <label for="new_password">סיסמה חדשה</label>
-          <input type="text" name="new_password" id="new_password" class="new_password" required="" />
+          <input type="text" name="new_password" id="new_password" class="new_password" />
         </div>
         <div class="inputd">
           <label for="phone_number">מס טלפון חדש</label>
-          <input type="text" id="phone_number" class="phone_number" name="phone_number" required="" />
+          <input type="text" id="phone_number" class="phone_number" name="phone_number" />
         </div>
         <div class="inputd">
           <label for="email">אימייל חדש</label>
-          <input type="email" id="email" class="email" name="email" required="" />
+          <input type="email" id="email" class="email" name="email" />
         </div>
         <div class="two_things">
           <div class="urlcompany">
@@ -116,6 +116,14 @@
             <label>ממוצע ציונים עדכני</label>
             <input type="number" name="grades" id="grades" class="grades" />
           </div>
+        </div>
+        <div class="findajob">
+          <label for="findajob">מצאתי עבודה</label>
+          <select name="findajob" class="findajob" id="findajob">
+            <option value="">בחר/י</option>
+            <option value="yes"> כן</option>
+            <option value="no"> לא</option>
+          </select>
         </div>
       </div>
 
@@ -155,5 +163,6 @@
     </div>
   </footer>
 </body>
+
 
 </html>
