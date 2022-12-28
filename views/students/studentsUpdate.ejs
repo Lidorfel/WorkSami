@@ -26,25 +26,38 @@
     />
     <link rel="stylesheet" href="/styles/studentsUpdate.css" />
   </head>
+
   <body dir="rtl">
     <header class="main-header">
       <nav
         class="items-shourcat"
         style="font-family: 'Secular One', sans-serif"
       >
-        <div class="mainbaner" style="width: 35%">
-          <a class="profile-page" href="/employers/employersUpdate">
+        <div class="mainbaner">
+          <a class="profile-page" href="/students/studentsUpdate">
             <i class="bi bi-person-circle"></i>
           </a>
-          <a class="nav-main" href="/employers/employersLoggedinPage"> ראשי </a>
+          <a class="nav-main" href="/students/studentMainPage"> ראשי </a>
+
           <a class="nav-student-grad" href=""> התראות </a>
-          <a class="nav-contact" href="/contact">
+          <a class="nav-contact" href="/students/contact">
             צור קשר
             <i class="bi bi-telephone"></i>
           </a>
-          <button class="logout">
-            התנתק <i class="bi bi-box-arrow-left"></i>
-          </button>
+          <form action="/students/logout" method="post">
+            <button class="logout">
+              התנתק <i class="bi bi-box-arrow-left"></i>
+              <script type="text/javascript">
+                function preventBack() {
+                  window.history.forward();
+                }
+                setTimeout("preventBack()", 0);
+                window.onunload = function () {
+                  null;
+                };
+              </script>
+            </button>
+          </form>
         </div>
         <div class="work-sami-logo">
           <svg
@@ -101,9 +114,13 @@
           />
         </svg>
       </div>
-      <form method="post" action="./employersUpdate" class="register_form">
+      <form
+        method="post"
+        action="/students/studentsUpdate"
+        class="register_form"
+      >
         <div class="input_details">
-          <h2 class="RgisterInfo">עדכון פרטים - מעסיקים</h2>
+          <h2 class="RgisterInfo">עדכון פרטים - סטודנטים</h2>
 
           <div class="inputd">
             <label for="new_password">סיסמה חדשה</label>
@@ -112,6 +129,7 @@
               name="new_password"
               id="new_password"
               class="new_password"
+              placeholder="<%=student.password  %> "
             />
           </div>
           <div class="inputd">
@@ -121,23 +139,54 @@
               id="phone_number"
               class="phone_number"
               name="phone_number"
+              placeholder="<%=student.phone  %> "
             />
           </div>
           <div class="inputd">
             <label for="email">אימייל חדש</label>
-            <input type="email" id="email" class="email" name="email" />
+            <input
+              type="email"
+              id="email"
+              class="email"
+              name="email"
+              placeholder="<%=student.email  %> "
+            />
           </div>
           <div class="two_things">
             <div class="urlcompany">
-              <label for="urlcompany">קישור לאתר</label>
-              <input name="urlcomapny" id="urlcompany" type="url" />
+              <label for="study_year">סטטוס לימודים עדכני</label>
+              <select name="study_year" class="study_year" id="study_year">
+                <option value="">בחר/י</option>
+                <option value="1 year">שנה א</option>
+                <option value="2 year">שנה ב</option>
+                <option value="3 year">שנה ג</option>
+                <option value="4 year">שנה ד</option>
+                <option value="5 year">שנה ה</option>
+                <option value="2nd degree">תואר שני</option>
+                <option value="graduate">בוגר סמי שמעון</option>
+              </select>
             </div>
             <div class="grades">
-              <label name="linkedin">קישור לינקדין</label>
-              <input type="url" name="linkedin" id="linkedin" class="grades" />
+              <label>ממוצע ציונים עדכני</label>
+              <input
+                type="number"
+                name="grades"
+                id="grades"
+                class="grades"
+                placeholder="<%=student.avg  %> "
+              />
             </div>
           </div>
+          <div class="findajob">
+            <label for="findajob">מצאתי עבודה</label>
+            <select name="findajob" class="findajob" id="findajob">
+              <option value="">בחר/י</option>
+              <option value="yes">כן</option>
+              <option value="no">לא</option>
+            </select>
+          </div>
         </div>
+
         <div class="bottom_things">
           <div class="employer_submit_2" id="employer_submit_2">
             <button class="update_button">עדכון</button>

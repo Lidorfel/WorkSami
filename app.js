@@ -25,9 +25,9 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-app.engine("html", cons.swig);
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "html");
+// app.engine("html", cons.swig);
+// app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(cookieParser());
@@ -46,7 +46,33 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.render("mainPage");
+  let numJobs = 0;
+  let numUsers = 0;
+  let numFoundJob = 0;
+  const jobRef = db.collection("jobs");
+  jobRef.find().toArray((err, jobs) => {
+    jobs.forEach((job) => {
+      if (job.approved) {
+        numJobs++;
+      }
+    });
+    console.log(`numJobs:${numJobs}`);
+    const studentRef = db.collection("students");
+    studentRef.find().toArray((err, students) => {
+      numUsers = students.length;
+      students.forEach((stu) => {
+        if (stu.findjob) {
+          numFoundJob++;
+        }
+      });
+      console.log(`numFoundJob:${numFoundJob}, numUsers:${numUsers}`);
+      res.render("mainPage", {
+        numJobs: numJobs,
+        numFoundJob: numFoundJob,
+        numUsers: numUsers,
+      });
+    });
+  });
 });
 app.get("/contact", (req, res) => {
   res.render("contactPage");

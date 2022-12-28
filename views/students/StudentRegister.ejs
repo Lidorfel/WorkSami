@@ -29,13 +29,11 @@
         style="font-family: 'Secular One', sans-serif"
       >
         <div class="mainbaner">
-          <a class="profile-page" href="">
+          <a class="profile-page" href="/students/loginSt">
             <i class="bi bi-person-circle"></i>
           </a>
           <a class="nav-main" href="/"> ראשי </a>
-          <a class="nav-employers" href="/employers" style="margin-left: 14px">
-            מעסיקים
-          </a>
+          <a class="nav-employers" href="/employers"> מעסיקים </a>
           <a class="nav-student-grad" href="/students"> סטודנטים/בוגרים </a>
           <a class="nav-contact" href="/contact">
             צור קשר
@@ -97,8 +95,8 @@
           />
         </svg>
       </div>
-      <form class="big_form" action="./registerEm" method="post">
-        <h2 class="RgisterInfo">מגייסים</h2>
+      <form class="big_form" action="./registerSt" method="post">
+        <h2 class="RgisterInfo">סטודנים/בוגרים</h2>
         <div class="signup_form">
           <div id="signup1" class="register_form">
             <div class="input_details">
@@ -106,9 +104,9 @@
                 <label for="register_name">שם מלא</label>
                 <input
                   type="text"
-                  name="fullname"
                   id="register_name"
                   class="name_register"
+                  name="fullname"
                   required=""
                 />
               </div>
@@ -117,8 +115,8 @@
                 <input
                   type="text"
                   id="user_id"
-                  name="id"
                   class="id_user"
+                  name="userId"
                   autocomplete="username"
                   autocapitalize="none"
                   required=""
@@ -131,7 +129,7 @@
                   placeholder="123-4567890"
                   id="phone_pass"
                   class="phone_user"
-                  name="phone"
+                  name="phone_user"
                   autocomplete="username"
                   autocapitalize="none"
                   required=""
@@ -149,73 +147,150 @@
                   required=""
                 />
               </div>
+            </div>
+            <div class="input_details">
               <div class="inputd">
-                <label for="password">סיסמה</label>
-                <input
-                  type="password"
-                  id="password"
-                  class="passw"
-                  name="password"
-                  autocomplete="username"
-                  autocapitalize="none"
-                  required=""
-                />
+                <label for="birthday">תאריך לידה </label>
+                <input type="date" name="birthday" id="birthday" />
+              </div>
+              <div class="inputd">
+                <label for="gender_select">מין</label>
+                <select
+                  name="gender_select"
+                  class="gender_select"
+                  id="gender_select"
+                >
+                  <option class="gender_selects" id="gender_selects">
+                    בחר/י
+                  </option>
+                  <option class="men_select" name="male" id="men">זכר</option>
+                  <option class="women_select" name="female" id="women">
+                    נקבה
+                  </option>
+                  <option class="other_select" name="other" id="other">
+                    אחר
+                  </option>
+                </select>
               </div>
             </div>
           </div>
           <div id="signup3" class="register_form">
             <div class="input_details">
-              <div class="inputd">
-                <label for="register_name">שם חברה</label>
-                <input
-                  type="text"
-                  id="companyName"
-                  class="companyName"
-                  name="companyName"
-                  required=""
-                />
-              </div>
-              <div class="inputd">
-                <label>תחום עיסוק ראשי</label>
-                <input
-                  type="text"
-                  id="line_of_business"
-                  class="line_of_business"
-                  name="line_of_business"
-                  autocomplete="username"
-                  autocapitalize="none"
-                  required=""
-                />
-              </div>
-              <div class="inputd">
-                <label>מיקום החברה</label>
-                <input
-                  type="text"
-                  id="location"
-                  class="location"
-                  name="location"
-                  autocapitalize="none"
-                  required=""
-                />
-              </div>
               <div class="two_things">
-                <div class="urlcompany">
-                  <label>אתר החברה</label>
+                <div class="inputd">
+                  <label for="password">סיסמה</label>
                   <input
-                    type="url"
-                    id="url-company"
-                    name="urlcompany"
-                    class="url-company"
+                    type="password"
+                    id="password"
+                    class="passw"
+                    name="password"
+                    autocomplete="username"
+                    autocapitalize="none"
                     required=""
                   />
                 </div>
-                <div class="linkedin" name="">
-                  <label>linkedin</label>
+                <div class="grade_status">
+                  <label for="year_study">סטטוס לימודים</label>
+                  <select name="study_year" class="study_year" id="year_study">
+                    <option value="">בחר/י</option>
+                    <option name="1 year" value="1 year">שנה א</option>
+                    <option name="2 year" value="2 year">שנה ב</option>
+                    <option name="3 year" value="3 year">שנה ג</option>
+                    <option name="4 year" value="4 year">שנה ד</option>
+                    <option name="5 year" value="5 year">שנה ה</option>
+                    <option name="2nd degree" value="2nd degree">
+                      תואר שני
+                    </option>
+                    <option name="graduate" value="graduate">
+                      בוגר סמי שמעון
+                    </option>
+                  </select>
+                </div>
+                <div class="grade_status">
+                  <label name="department" for="study_profession">מחלקה</label>
+                  <select
+                    class="study_profession"
+                    id="study_profession"
+                    name="study_profession"
+                    required=""
+                  >
+                    <option value="">בחר/י</option>
+                    <option
+                      name="Software engineering"
+                      value="Software engineering"
+                    >
+                      הנדסת תוכנה
+                    </option>
+                    <option
+                      name="electrical engineering"
+                      value="electrical engineering"
+                    >
+                      הנדסת חשמל
+                    </option>
+                    <option
+                      name="Industrial engineering"
+                      value="Industrial engineering"
+                    >
+                      הנדסת תעשיה וניהול
+                    </option>
+                    <option
+                      name="structural engineering"
+                      value="structural engineering"
+                    >
+                      הנדסת בניין
+                    </option>
+                    <option name="computer science" value="computer science">
+                      מדעי המחשב
+                    </option>
+                    <option name="architecture" value="architecture">
+                      אדריכלות
+                    </option>
+                    <option name="Graphic design" value="Graphic design">
+                      תקשורת חזותית
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="three_things">
+                <div class="start_finsih_date">
+                  <div class="dates_avrage">
+                    <label for="date_start" class="three_things_labels"
+                      >תאריך התחלה
+                    </label>
+                    <input
+                      type="date"
+                      id="date_start"
+                      class="strat_date"
+                      name="strat_date"
+                      required=""
+                      min="1900-01-01"
+                      max="2030-12-31"
+                    />
+                  </div>
+                  <div class="dates_avrage">
+                    <label for="date_finish" class="three_things_labels"
+                      >תאריך סיום
+                    </label>
+                    <input
+                      type="date"
+                      id="date_finish"
+                      class="finish_date"
+                      name="finish_date"
+                      required=""
+                      min="1900-01-01"
+                      max="2030-12-31"
+                    />
+                  </div>
+                </div>
+                <div class="dates_avrage">
+                  <label for="avrage_grade" class="three_things_labels"
+                    >ממוצע ציונים</label
+                  >
                   <input
-                    type="url"
-                    id="linkedin"
-                    class="linkedin"
-                    name="linkedin"
+                    type="text"
+                    id="avrage_grade"
+                    name="avrage_grade"
+                    class="grade_avrage"
                     required=""
                   />
                 </div>
@@ -228,7 +303,6 @@
           <button id="submit-button3" class="submit"></button>
         </div>
       </form>
-
       <label class="sentence">"העתיד שלך מתחיל אצלנו"</label>
     </section>
     <footer>

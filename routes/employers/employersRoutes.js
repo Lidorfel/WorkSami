@@ -4,6 +4,8 @@ const cookieParser = require("../../app").cookieParser;
 const sessions = require("../../app").sessions;
 const employer = require("../../models/employers");
 const job = require("../../models/jobs");
+const student = require("../../models/Students");
+const { db } = require("../../models/Students");
 
 let session;
 
@@ -17,9 +19,23 @@ router.get("/registerEm", (req, res) => {
 router.get("/loginEm", (req, res) => {
   res.render("./employers/employersLogin");
 });
-router.get("/employersLoggedinPage", (req, res) => {
+router.get("/contact", (req, res) => {
+  res.render("./employers/contactPageEM");
+});
+router.get("/employersLoggedinPage", async (req, res) => {
   if (session) {
-    res.render("./employers/employersLoggedinPage");
+    let li = [];
+    employer.findOne({ email: session.userid }).then((user) => {
+      const jobsRef = job.db.collection("jobs");
+      jobsRef.find().toArray((err, jobsArray) => {
+        jobsArray.forEach((job) => {
+          if (user.jobsPosted.includes(job._id)) {
+            li.push(job);
+          }
+        });
+        res.render("./employers/employersLoggedinPage", { jobs: li });
+      });
+    });
   } else {
     res.redirect("./");
   }
@@ -83,6 +99,7 @@ router.post("/employersLoggedinPage", async (req, res) => {
   job.db
     .collection("jobs")
     .insertOne({
+      UniqueID: Math.floor(Math.random() * 100000000).toString(),
       companyName: req.body.name_job,
       description: req.body.describe_job,
       profession: req.body.job_type,
@@ -108,51 +125,89 @@ router.post("/employersLoggedinPage", async (req, res) => {
 //admin routes
 
 router.get("/admin", (req, res) => {
-  if (session) {
-    res.render("./admin/adminPage");
-  } else {
-    res.redirect("./");
-  }
+  const jobsRef = job.db.collection("jobs");
+  jobsRef.find().toArray((err, jobsArray) => {
+    console.log(jobsArray);
+    if (session) {
+      res.render("./admin/adminPage", { jobsArray: jobsArray });
+    } else {
+      res.redirect("./");
+    }
+  });
+});
+router.post("/adminlogout", (req, res) => {
+  req.session.destroy();
+  session = req.session;
+  res.redirect("./");
 });
 router.post("/admin", (req, res) => {
-  if ("logout-admin" in req.body) {
-    req.session.destroy();
-    session = req.session;
-    res.redirect("./");
-  } else if ("newJob-admin" in req.body) {
-    console.log("else-newjob");
-    job.db
-      .collection("jobs")
-      .insertOne({
-        companyName: req.body.name_job,
-        description: req.body.describe_job,
-        profession: req.body.job_type,
-        location: req.body.location,
-        approved: false,
-        candidates: [],
-      })
-      .then((newJob) => {
-        console.log("new job");
-        employer.db
-          .collection("employers")
-          .updateOne(
-            { email: "worksami@gmail.com" },
-            { $push: { jobsPosted: newJob.insertedId } }
-          );
-        res.redirect("/employers/admin");
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
+  job.db
+    .collection("jobs")
+    .insertOne({
+      UniqueID: Math.floor(Math.random() * 100000000).toString(),
+      companyName: req.body.name_job,
+      description: req.body.describe_job,
+      profession: req.body.job_type,
+      location: req.body.location,
+      approved: true,
+      candidates: [],
+    })
+    .then((newJob) => {
+      console.log("new job");
+      employer.db
+        .collection("employers")
+        .updateOne(
+          { email: "worksami@gmail.com" },
+          { $push: { jobsPosted: newJob.insertedId } }
+        );
+      res.redirect("/employers/admin");
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 });
-
 router.get("/employersLoggedinPage", (req, res) => {
   res.render("./employers/employersLoggedinPage");
 });
 
+router.get("/employersLoggedinPage/seeCandidate/:id", async (req, res) => {
+  if (session) {
+    let li = [];
+    let jobtemp = {};
+    const id = req.params.id;
+    await job.findById(id).then(async (jobFound) => {
+      jobtemp = jobFound;
+      jobFound.candidates.forEach((emailFound) => {
+        student.db
+          .collection("students")
+          .findOne({ email: emailFound })
+          .then((user) => {
+            li.push(user);
+          });
+      });
+    });
+    const timer = setTimeout(() => {
+      res.render("./employers/employer_candidate", {
+        candidates: li,
+        jobFound: jobtemp,
+      });
+    }, 800);
+  } else {
+    res.redirect("./");
+  }
+});
+
 router.get("/employersUpdate", (req, res) => {
-  res.render("./employers/employersUpdate");
+  if (session) {
+    employer.db
+      .collection("employers")
+      .findOne({ email: session.userid })
+      .then((user) => {
+        res.render("./employers/employersUpdate", { employer: user });
+      });
+  } else {
+    res.redirect("./");
+  }
 });
 router.post("/employersUpdate", (req, res) => {
   console.log(session.userid);
@@ -181,6 +236,58 @@ router.post("/employersUpdate", (req, res) => {
   );
   res.redirect("/employers/employersloggedinpage");
 });
+
+router.get("/admin/seeCandidate/:id", async (req, res) => {
+  if (session) {
+    let li = [];
+    let jobtemp = {};
+    const id = req.params.id;
+    await job.findById(id).then((jobFound) => {
+      jobtemp = jobFound;
+      jobFound.candidates.forEach((emailFound) => {
+        student.db
+          .collection("students")
+          .findOne({ email: emailFound })
+          .then((user) => {
+            li.push(user);
+          });
+      });
+    });
+    const timer = setTimeout(() => {
+      res.render("./admin/admin_candidate", {
+        candidates: li,
+        jobFound: jobtemp,
+      });
+    }, 800);
+  } else {
+    res.redirect("./");
+  }
+});
+
+router.get("/admin/allUsers", (req, res) => {
+  if (session) {
+    res.render("./admin/users");
+  } else {
+    res.redirect("./");
+  }
+});
+router.get("/admin/jobsApprove", (req, res) => {
+  if (session) {
+    let li = [];
+    const jobsRef = job.db.collection("jobs");
+    jobsRef.find().toArray((err, jobsArray) => {
+      jobsArray.forEach((job) => {
+        if (!job.approved) {
+          li.push(job);
+        }
+      });
+      res.render("./admin/jobsApproval", { jobs: li });
+    });
+  } else {
+    res.redirect("./");
+  }
+});
+
 //admin new job
 // router.post("/admin", async (req, res) => {
 //   console.log(req.body);

@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="../../public/styles/users.css" />
+    <link rel="stylesheet" href="/styles/adminPage.css" />
   </head>
 
   <body dir="rtl">
@@ -25,17 +25,22 @@
         style="font-family: 'Secular One', sans-serif"
       >
         <div class="mainbaner">
-          <a class="profile-page" href="profile.html" target="_blank">
+          <a class="profile-page" href="">
             <i class="bi bi-person-circle"></i>
           </a>
           <a class="nav-main" href=""> ראשי </a>
-          <a class="nav-users-requests" href="/usersRequests">
+          <a class="nav-users-requests" href="/employers/admin/usersRequests">
             פניות משתמשים
           </a>
-          <a class="nav-approve-jobs" href="/approveJobs"> אישור משרות </a>
-          <a class="nav-all-users" href="/allUsers"> ניהול המשתמשים </a>
-          <form action="/employers/admin" method="post">
-            <button class="logout">
+
+          <a class="nav-approve-jobs" href="/employers/admin/jobsApprove">
+            אישור משרות
+          </a>
+          <a class="nav-all-users" href="/employers/admin/allUsers">
+            ניהול המשתמשים
+          </a>
+          <form action="/employers/adminlogout" method="post">
+            <button class="logout" name="logout-admin" type="submit">
               התנתק <i class="bi bi-box-arrow-left"></i>
               <script type="text/javascript">
                 function preventBack() {
@@ -78,247 +83,94 @@
       </nav>
     </header>
     <section class="page-body">
-      <form class="studentUsers" id="studentUsers" name="studentUsers">
-        <div class="caption">
-          <caption>
-            סטודנטים
-          </caption>
+      <form class="add_job" method="post" action="./admin">
+        <h1 style="color: black">הוספת עבודה:</h1>
+        <label>שם החברה</label>
+        <div class="add_pro">
+          <input name="name_job" id="name_job" type="text" class="name_com" />
         </div>
-        <table>
-          <tr>
-            <th>שם מלא</th>
-            <th>ת"ז</th>
-            <th>אימייל</th>
-            <th>כרטיס סטודנט</th>
-            <th></th>
-            <th></th>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>לארי</td>
-            <td>207235988</td>
-            <td>developer@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </form>
-      <form class="employerUsers" id="employerUsers" name="employerUsers">
-        <div class="caption">
-          <caption>
-            מגייסים
-          </caption>
+        <label> תיאור המשרה</label>
+        <div class="add_pro">
+          <input
+            name="describe_job"
+            id="describe_job"
+            type="text"
+            class="describe_job"
+          />
         </div>
-
-        <table>
-          <tr>
-            <th>שם מלא</th>
-            <th>ת"ז</th>
-            <th>אימייל</th>
-            <th>כרטיס סטודנט</th>
-            <th></th>
-            <th></th>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>לארי</td>
-            <td>256684755</td>
-            <td>developer@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </table>
+        <div class="selection">
+          <div class="add_pro_select">
+            <label for="job_type"> תחום עיסוק</label>
+            <select name="job_type" id="job_type" class="job_type">
+              <option value="הנדסת תוכנה">הנדסת תוכנה</option>
+              <option value="הנדסת חשמל">הנדסת חשמל</option>
+              <option value="הנדסת תעשיה וניהול">הנדסת תעשיה וניהול</option>
+              <option value="הנדסת בניין">הנדסת בניין</option>
+              <option value="מדעי המחשב">מדעי המחשב</option>
+              <option value="אדריכלות">אדריכלות</option>
+              <option value="תקשורת חזותית">תקשורת חזותית</option>
+            </select>
+          </div>
+          <div class="add_pro_select">
+            <label for="location"> מיקום </label>
+            <select name="location" id="location" class="location">
+              <option>איזור הדרום</option>
+              <option>איזור המרכז</option>
+              <option>איזור הצפון</option>
+              <option>איזור השפלה</option>
+            </select>
+          </div>
+        </div>
+        <button
+          id="button_add"
+          class="button_add"
+          type="submit"
+          name="newJob-admin"
+        >
+          הוספת משרה +
+        </button>
       </form>
+      <div class="jobs">
+        <% if (jobsArray.length>0){ %> <% jobsArray.forEach(job=>{ %>
+        <div class="works">
+          <div class="up_part">
+            <h1 name="name_job" id="name_job"><%= job.companyName %></h1>
+            <button name="edit_job" id="edit_job">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button name="deleate_job" id="deleate_job">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </div>
+          <div class="middle_part">
+            <label>תיאור המשרה:</label>
+            <p id="job-description"><%= job.description %></p>
+            <label>תחום עיסוק:</label>
+            <p id="job_type" class="job_type"><%= job.profession %></p>
+            <label>מיקום:</label>
+            <p id="job_loction" class="job_loction"><%= job.location %></p>
+          </div>
+          <div class="bottom_part">
+            <form
+              action="/employers/admin/seeCandidate/<%=job._id  %> "
+              method="get"
+            >
+              <button class="see_candidates">ראה מועמדים</button>
+            </form>
+            <button id="icon_linkdin" class="icon_buttons">
+              <i class="bi bi-linkedin"></i>
+            </button>
+            <button id="home_page_web" class="icon_buttons">
+              <i class="bi bi-house-door-fill"></i>
+            </button>
+          </div>
+        </div>
+        <% }) %> <% } %>
+      </div>
     </section>
-    <footer>
-      <a href="">
+    <footer <% if(jobsArray.length<4){ %>
+      style="position:fixed;" <% } %>>
+      <a href="/employers/admin">
         <svg
           class="site-logo"
           width="150"
@@ -352,6 +204,5 @@
         <a href=""><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
-    <script src="index.js"></script>
   </body>
 </html>

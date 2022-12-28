@@ -194,7 +194,8 @@ body {
   border-radius: 20px;
   width: 80px;
   padding: 0 5px;
-  color: black;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  color: white;
   border: 1px solid black;
   cursor: pointer;
 }

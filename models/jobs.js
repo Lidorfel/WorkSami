@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const jobSchema = new Schema(
   {
+    UniqueID: {
+      type: String,
+      required: true,
+    },
     companyName: {
       type: String,
       required: true,

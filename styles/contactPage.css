@@ -68,22 +68,6 @@ nav a {
   position: relative;
   margin-left: 3%;
 }
-.logout {
-  cursor: pointer;
-  background: #b43e31;
-  border-radius: 10px;
-  font-family: "Noto Sans Hebrew";
-  color: white;
-  border: 0;
-  padding: 5px 10px;
-  font-size: 15px;
-  right: 100px;
-}
-.logout:hover {
-  color: #b43e31;
-  background-color: transparent;
-  border: 1px solid #b43e31;
-}
 /* Company-details */
 .company-details {
   position: relative;

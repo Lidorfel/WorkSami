@@ -135,6 +135,9 @@ body {
   font-family: "Noto Sans Hebrew", sans-serif;
   font-size: 18px;
 }
+.all_jobs h1 {
+  font-size: 1.8rem;
+}
 .works {
   border-radius: 60px;
   width: 300px;
@@ -150,7 +153,7 @@ body {
   flex-direction: row;
   justify-content: center;
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   justify-content: space-evenly;
 }
 .up_part button {

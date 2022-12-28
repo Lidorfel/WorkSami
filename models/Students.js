@@ -52,6 +52,10 @@ const StudentSchema = new Schema(
       type: Boolean,
       require: true,
     },
+    likedJobs: {
+      type: Array,
+      require: true,
+    },
   },
   { timestamps: true }
 );

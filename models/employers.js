@@ -43,6 +43,10 @@ const employerSchema = new Schema(
       type: String,
       required: true,
     },
+    jobsPosted: {
+      type: Array,
+      required: true,
+    },
     isadmin: {
       type: Boolean,
       require: true,

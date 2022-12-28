@@ -163,7 +163,9 @@ body {
 }
 .sentence {
   font-size: 15px;
+  margin-top: 10px;
   font-family: "Noto Sans Hebrew", sans-serif;
+  color: #0c5a0a;
 }
 .two_things {
   display: flex;
@@ -194,7 +196,6 @@ body {
   position: relative;
   flex-direction: column;
   justify-content: space-around;
-  margin-right: 10px;
 }
 .three_things {
   display: flex;
