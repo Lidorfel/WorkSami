@@ -51,6 +51,10 @@ const employerSchema = new Schema(
       type: Boolean,
       require: true,
     },
+    approved: {
+      type: Boolean,
+      require: true,
+    },
   },
   { timestamps: true }
 );
