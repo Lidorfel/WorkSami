@@ -31,6 +31,10 @@ const jobSchema = new Schema(
       type: Array,
       required: true,
     },
+    updatedAt: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

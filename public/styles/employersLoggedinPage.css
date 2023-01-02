@@ -86,7 +86,7 @@ body {
 .add_job {
   display: flex;
   position: relative;
-    width: 100%;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   align-items: center;
@@ -156,18 +156,29 @@ body {
   margin-top: 10px;
   justify-content: space-evenly;
 }
-.up_part button {
+.up_part form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#edit_job,
+#deleate_job {
   font-size: 22px;
   border: 0px;
   background-color: transparent;
 }
-.up_part button :hover {
+#edit_job:hover {
   color: green;
   cursor: pointer;
   border: 0px;
   background-color: transparent;
 }
-
+#deleate_job:hover {
+  color: rgb(137, 13, 13);
+  cursor: pointer;
+  border: 0px;
+  background-color: transparent;
+}
 .middle_part {
   display: flex;
   position: relative;
@@ -176,7 +187,7 @@ body {
   width: 100%;
   align-items: flex-start;
   margin-right: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .bottom_part {
   display: flex;
@@ -196,7 +207,8 @@ body {
   border-radius: 20px;
   width: 80px;
   padding: 0 5px;
-  color: black;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  color: white;
   border: 1px solid black;
   cursor: pointer;
 }
