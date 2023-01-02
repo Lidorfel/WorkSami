@@ -72,133 +72,92 @@ nav a {
 }
 .page-body {
   position: relative;
+  padding: 7% 7%;
+  font-family: "Noto Sans Hebrew", sans-serif;
 }
 .page-header {
-  margin-top: 6%;
   font-family: "Secular One", sans-serif;
   font-size: 3rem;
   text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.35);
+  padding-bottom: 2%;
 }
-.jobs {
-  margin: auto;
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 3% 10%;
-  margin-bottom: 4%;
-  gap: 80px;
-}
-.jobs h1 {
-  font-family: "Noto Sans Hebrew", sans-serif;
-  font-size: 1.8rem;
-}
-.works {
-  border-radius: 60px;
-  width: 300px;
-  height: 300px;
-  background-color: transparent;
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border: 1px solid black;
-}
-.up_part {
+.req-res {
   display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  justify-content: space-evenly;
-}
-.up_part form {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
 }
-#edit_job,
-#deleate_job {
+.req,
+.res {
+  padding: 4% 4%;
+  margin-bottom: 40px;
+  background-color: #d9d9dc;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+}
+.req {
+  width: 60%;
+  height: 260.48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.req p {
+  text-align: right;
+}
+.req h3 {
+  background-color: #5e965e;
+}
+.email-phone {
+  display: flex;
+}
+.email-phone h4 {
+  margin-left: 30px;
+}
+.h3-delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+#deleteRequest {
   font-size: 22px;
   border: 0px;
   background-color: transparent;
 }
-#edit_job:hover {
-  color: green;
-  cursor: pointer;
-  border: 0px;
-  background-color: transparent;
-}
-#deleate_job:hover {
+#deleteRequest:hover {
   color: rgb(137, 13, 13);
   cursor: pointer;
   border: 0px;
   background-color: transparent;
 }
-.add_job input {
-  width: 400px;
-  justify-content: space-evenly;
-  border-radius: 60px;
-  font-family: "Noto Sans Hebrew", sans-serif;
+.res {
+  width: 30%;
+  padding: 2% 2%;
 }
-.selection select {
-  width: 200px;
-  justify-content: space-evenly;
-  border-radius: 60px;
-  font-family: "Noto Sans Hebrew", sans-serif;
-  cursor: pointer;
-}
-.selection {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
-.add_pro_select {
+.res form {
   display: flex;
   flex-direction: column;
 }
-.button_add {
-  width: 100px;
-  justify-content: space-evenly;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  font-family: "Noto Sans Hebrew", sans-serif;
-}
-.button_add:hover {
-  cursor: pointer;
-}
-.middle_part {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  font-family: "Noto Sans Hebrew", sans-serif;
-  width: 100%;
-  align-items: flex-start;
-  margin-right: 10px;
-  margin-bottom: 40px;
-}
-.bottom_part {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  justify-content: space-evenly;
-}
-.bottom_part i {
-  font-size: 30px;
-}
-.icon_buttons {
-  border: 0px;
+.res textarea {
+  resize: none;
   background-color: transparent;
+  border-radius: 10px;
 }
-.middle_part p {
-  font-size: 14px;
-}
-.icon_buttons:nth-child(3):hover {
-  color: green;
+.res button {
+  background-color: rgb(25, 111, 25);
+  padding: 5px 8px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  color: white;
   cursor: pointer;
+  width: 40%;
+  align-self: center;
+  margin-top: 5px;
 }
-.icon_buttons:nth-child(2) :hover {
-  color: rgb(42, 3, 184);
-  cursor: pointer;
+.res button:hover {
+  color: rgb(25, 111, 25);
+  background-color: transparent;
+  border: 1px solid rgb(25, 111, 25);
 }
 footer {
   background: #d9d9d9;
@@ -232,5 +191,5 @@ footer {
   color: rgb(179, 88, 2);
 }
 .footer-icons a:nth-child(4):hover {
-  color: rgb(42, 3, 184);
+  color: rgb(42,  3,  184);
 }

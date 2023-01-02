@@ -28,7 +28,7 @@
           <a class="profile-page" href="">
             <i class="bi bi-person-circle"></i>
           </a>
-          <a class="nav-main" href=""> ראשי </a>
+          <a class="nav-main" href="/employers/admin"> ראשי </a>
           <a class="nav-users-requests" href="/employers/admin/usersRequests">
             פניות משתמשים
           </a>
@@ -114,10 +114,10 @@
           <div class="add_pro_select">
             <label for="location"> מיקום </label>
             <select name="location" id="location" class="location">
-              <option>איזור הדרום</option>
-              <option>איזור המרכז</option>
-              <option>איזור הצפון</option>
-              <option>איזור השפלה</option>
+              <option value="איזור הדרום">איזור הדרום</option>
+              <option value="איזור המרכז">איזור המרכז</option>
+              <option value="איזור הצפון">איזור הצפון</option>
+              <option value="איזור השפלה">איזור השפלה</option>
             </select>
           </div>
         </div>
@@ -135,12 +135,32 @@
         <div class="works">
           <div class="up_part">
             <h1 name="name_job" id="name_job"><%= job.companyName %></h1>
-            <button name="edit_job" id="edit_job">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-            <button name="deleate_job" id="deleate_job">
-              <i class="bi bi-trash-fill"></i>
-            </button>
+            <% if(admin.includes(job._id.toString())){ %>
+            <form
+              action="/employers/admin/updateJOB/<%=job._id  %>"
+              method="get"
+            >
+              <button name="edit_job" id="edit_job">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </form>
+            <% } %>
+            <form
+              action="/employers/admin/jobPosition/<%=job._id  %>"
+              method="post"
+            >
+              <button name="edit_job" id="edit_job">
+                <i class="bi bi-arrow-90deg-up"></i>
+              </button>
+            </form>
+            <form
+              action="/employers/admin/deleteJOB/<%=job._id  %>"
+              method="post"
+            >
+              <button name="deleate_job" id="deleate_job">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </form>
           </div>
           <div class="middle_part">
             <label>תיאור המשרה:</label>
@@ -157,12 +177,6 @@
             >
               <button class="see_candidates">ראה מועמדים</button>
             </form>
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
           </div>
         </div>
         <% }) %> <% } %>
@@ -198,10 +212,10 @@
         </svg>
       </a>
       <div class="footer-icons">
-        <a href=""><i class="bi bi-whatsapp"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.whatsapp.com/"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
   </body>
