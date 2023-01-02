@@ -154,6 +154,11 @@ body {
   margin-top: 20px;
   justify-content: space-evenly;
 }
+.up_part form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .up_part button {
   font-size: 22px;
   border: 0px;

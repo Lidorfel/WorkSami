@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit-icons.min.js"></script>
     <!-- CSS only -->
     <link
       rel="stylesheet"
@@ -18,11 +22,11 @@
     <link rel="stylesheet" href="/styles/employersPage.css" />
     <title>WorkSami - Find Your Job</title>
   </head>
-  <body dir="rtl">
+  <body dir="rtl" onload="UIkit.notification({message:'<%=isApproved%>'})">
     <header class="main-header">
       <nav class="items-shourcat">
         <div class="mainbaner">
-          <a class="profile-page" title="links" href="/employers/login">
+          <a class="profile-page" title="links" href="/employers/loginEm">
             <i class="bi bi-person-circle"></i>
           </a>
           <a class="nav-main" title="links" href="/"> ראשי </a>

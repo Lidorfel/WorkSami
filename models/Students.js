@@ -56,6 +56,10 @@ const StudentSchema = new Schema(
       type: Array,
       require: true,
     },
+    approved: {
+      type: Boolean,
+      require: true,
+    },
   },
   { timestamps: true }
 );

@@ -6,17 +6,56 @@ const student = require("../../models/Students");
 const job = require("../../models/jobs");
 const cons = require("consolidate");
 const { default: mongoose } = require("mongoose");
+const request = require("../../models/request");
+const employer = require("../../models/employers");
 let session;
 
 // var db = require("../../app");
 // const User = require("../../models/User");
 //students
 router.get("/", (req, res) => {
-  res.render("./students/studentsPage");
+  const valid = req.query.valid;
+  if (valid === "novalid") {
+    res.render("./students/studentsPage", {
+      isApproved: "מצטערים, מנהל המערכת טרם אישר אותך",
+    });
+  } else {
+    res.render("./students/studentsPage", { isApproved: "שלום" });
+  }
 });
 //contact page
 router.get("/contact", (req, res) => {
-  res.render("./students/contactPageST");
+  if (session) {
+    student.db
+      .collection("students")
+      .findOne({ email: session.userid })
+      .then((user) => {
+        res.render("./students/contactPageST", { stu: user });
+      });
+  } else {
+    res.redirect("/contact");
+  }
+});
+router.post("/contact", (req, res) => {
+  if (req.body.contact_body_text.length > 0) {
+    request.db
+      .collection("requests")
+      .insertOne({
+        email: req.body.person_email,
+        phone: req.body.person_phone,
+        fullname: req.body.person_fullname,
+        reqBody: req.body.contact_body_text,
+      })
+      .then((r) => {
+        console.log("request created " + r._id);
+        res.redirect("./studentMainPage");
+      })
+      .catch((err) => {
+        console.log("request failed " + err);
+      });
+  } else {
+    res.redirect("./contact");
+  }
 });
 //students register page
 router.get("/registerSt", (req, res) => {
@@ -33,10 +72,14 @@ router.post("/loginSt", async (req, res) => {
       .findOne({ email: req.body.email })
       .then((user) => {
         if (user.password === req.body.password) {
-          session = req.session;
-          session.userid = req.body.email;
-          console.log(session);
-          res.redirect("/students/studentMainPage");
+          if (user.approved) {
+            session = req.session;
+            session.userid = req.body.email;
+            console.log(session);
+            res.redirect("/students/studentMainPage");
+          } else {
+            res.redirect("/students/?valid=" + "novalid");
+          }
         } else {
           res.redirect("/404");
         }
@@ -47,7 +90,7 @@ router.post("/loginSt", async (req, res) => {
       });
   } catch {
     (err) => {
-      res.sendStatus("/404");
+      res.redirect("/404");
     };
   }
 });
@@ -67,26 +110,40 @@ router.get("/studentsUpdate", (req, res) => {
 });
 router.get("/studentMainPage", (req, res) => {
   // const id = req.params.id;
-  let li = [];
-  const jobsRef = job.db.collection("jobs");
-  student.findOne({ email: session.userid }).then((user) => {
-    jobsRef.find().toArray((err, jobsArray) => {
-      jobsArray.forEach((job) => {
-        if (job.approved) {
-          li.push(job);
-        }
-      });
-      if (session) {
+  const valid = req.query.valid;
+  console.log("is valid? " + valid);
+  if (session) {
+    let li = [];
+    const jobsRef = job.db.collection("jobs");
+    student.findOne({ email: session.userid }).then((user) => {
+      jobsRef.find().toArray((err, jobsArray) => {
+        jobsArray.forEach((job) => {
+          if (job.approved) {
+            job["linkedin"] = "https://www.linkedin.com/";
+            job["urlcompany"] = "https://www.Facebook.com";
+            li.push(job);
+          }
+        });
+        li.sort((a, b) => {
+          if (a.updatedAt > b.updatedAt) {
+            return -1;
+          }
+          if (a.updatedAt < b.updatedAt) {
+            return 1;
+          }
+          return 0;
+        });
+
         res.render("./students/studentMainPage", {
           jobsArray: li,
           likedJobs: user.likedJobs,
           studentEmail: session.userid,
         });
-      } else {
-        res.redirect("./");
-      }
+      });
     });
-  });
+  } else {
+    res.redirect("./");
+  }
 });
 router.post("/registerSt", async (req, res) => {
   student.db
@@ -105,6 +162,7 @@ router.post("/registerSt", async (req, res) => {
       avg: req.body.avrage_grade,
       findjob: false,
       likedJobs: [],
+      approved: false,
     })
     .then(() => {
       console.log("user created");
@@ -133,7 +191,6 @@ router.post("/studentMainPage/unlikejob/:id", (req, res) => {
 });
 router.post("/studentMainPage/applyToJob/:id", (req, res) => {
   const jobid = req.params.id;
-  console.log("test1", jobid);
   job.findById(jobid).then((jobFound) => {
     job.db
       .collection("jobs")
@@ -160,14 +217,9 @@ router.post("/studentMainPage/afterFilterJob/", (req, res) => {
         jobRef.find().toArray((err, jobArr) => {
           const filterArray = (array, filter1, filter2, filter3) => {
             return array.filter((item) => {
-              // If all three filters are null, include the item in the result
               if (!filter1 && !filter2 && !filter3) {
                 return true;
-              }
-
-              // If any of the filters is not null, include the item in the result
-              // only if it meets the criteria of the non-null filters
-              else {
+              } else {
                 return (
                   (filter1 ? item.companyName === filter1 : true) &&
                   (filter2 ? item.profession === filter2 : true) &&
@@ -195,7 +247,7 @@ router.post("/logout", (req, res) => {
   req.session.destroy();
   session = req.session;
 
-  res.redirect("./");
+  res.redirect("/");
 });
 //student update
 
@@ -232,30 +284,5 @@ router.post("/studentsUpdate", (req, res) => {
 
   res.redirect("/students/studentsUpdate");
 });
-
-//post method
-// router.route("/registerSt").post(async (req, res) => {
-//   console.log(req.body);
-//   User.create({
-//     fullname: req.body.fullname,
-//     id: req.body.userId,
-//     phone: req.body.phone_user,
-//     email: req.body.email,
-//     password: req.body.password,
-//     gender: req.body.gender_select,
-//     status: req.body.study_year,
-//     department: req.body.department,
-//     startdate: req.body.strat_date,
-//     enddate: req.body.finish_date,
-//     avg: req.body.avrage_grade,
-//   })
-//     .then(() => {
-//       console.log("user created");
-//     })
-//     .catch((err) => {
-//       console.log(err.message);
-//     });
-//   res.redirect("./loginSt");
-// });
 
 module.exports = router;

@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WorkSami - Find Your Job</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,26 +19,24 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="/styles/jobsApproval.css" />
+    <link rel="stylesheet" href="/styles/employersLoggedinPage.css" />
   </head>
   <body dir="rtl">
     <header class="main-header">
-      <nav class="items-shourcat">
+      <nav
+        class="items-shourcat"
+        style="font-family: 'Secular One', sans-serif"
+      >
         <div class="mainbaner">
-          <a class="profile-page" href="">
+          <a class="profile-page" href="/employers/employersUpdate">
             <i class="bi bi-person-circle"></i>
           </a>
-          <a class="nav-main" href="/employers/admin"> ראשי </a>
-          <a class="nav-users-requests" href="/employers/admin/usersRequests">
-            פניות משתמשים
+          <a class="nav-main" href="/employers/employersloggedinpage"> ראשי </a>
+          <a class="nav-contact" href="/employers/contact">
+            צור קשר
+            <i class="bi bi-telephone"></i>
           </a>
-          <a class="nav-approve-jobs" href="/employers/admin/jobsApprove">
-            אישור משרות
-          </a>
-          <a class="njobsApprovalav-all-users" href="/employers/admin/allUsers"
-            >ניהול משתמשים</a
-          >
-          <form action="/employers/adminlogout" method="post">
+          <form action="/employers/logoutemployer" method="post">
             <button class="logout">
               התנתק <i class="bi bi-box-arrow-left"></i>
               <script type="text/javascript">
@@ -77,24 +79,93 @@
         </div>
       </nav>
     </header>
-    <section class="page-body">
-      <% if (jobs.length>0){ %>
-      <h1 class="page-header">משרות הממתינות לאישור</h1>
-      <div class="jobs">
-        <% jobs.forEach(job=>{ %>
+    <section class="page_body">
+      <form method="post" <% if(emp.email!="worksami@gmail.com" ){ %>
+        action="/employers/employersloggedinpage/updateJOB/<%=job._id %>" <%
+        }else{ %> action="/employers/admin/updateJOB/<%=job._id %>" <% } %>
+        class="add_job" >
+        <h1 style="color: black">עריכת משרה:</h1>
+        <label>שם החברה</label>
+        <div class="add_pro">
+          <input
+            name="name_job"
+            id="name_job"
+            type="text"
+            class="name_com"
+            value="<%=job.companyName  %>"
+            disabled
+          />
+        </div>
+        <label> תיאור המשרה</label>
+        <div class="add_pro">
+          <input
+            name="describe_job"
+            id="describe_job"
+            type="text"
+            class="describe_job"
+            name="describe_job"
+            placeholder="<%=job.description  %>"
+          />
+        </div>
+        <div class="selection">
+          <div class="add_pro_select">
+            <label> תחום עיסוק</label>
+            <select name="job_type" id="job_type" class="job_type">
+              <option value="">בחר/י</option>
+              <option value="הנדסת תוכנה">הנדסת תוכנה</option>
+              <option value="הנדסת חשמל">הנדסת חשמל</option>
+              <option value="הנדסת תעשיה וניהול">הנדסת תעשיה וניהול</option>
+              <option value="הנדסת בניין">הנדסת בניין</option>
+              <option value="מדעי המחשב">מדעי המחשב</option>
+              <option value="אדריכלות">אדריכלות</option>
+              <option value="תקשורת חזותית">תקשורת חזותית</option>
+            </select>
+          </div>
+          <div class="add_pro_select">
+            <label for="location"> מיקום </label>
+            <select name="location" id="location" class="location">
+              <option value="">בחר/י</option>
+              <option value="איזור הדרום">איזור הדרום</option>
+              <option value="איזור המרכז">איזור המרכז</option>
+              <option value="איזור הצפון">איזור הצפון</option>
+              <option value="איזור השפלה">איזור השפלה</option>
+            </select>
+          </div>
+        </div>
+        <button id="button_add" class="button_add">עדכון משרה</button>
+      </form>
+      <div
+        class="all_jobs"
+        style="display: flex; justify-content: center; align-items: center"
+      >
         <div class="works">
+          <% if (job.approved){ %>
+          <h5
+            style="
+              color: green;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            מאושר
+          </h5>
+          <% }else{ %>
+          <h5
+            style="
+              color: blue;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            ממתין לאישור
+          </h5>
+          <% } %>
           <div class="up_part">
             <h1 name="name_job" id="name_job"><%=job.companyName %></h1>
             <form
-              action="/employers/admin/jobs/approveJOB/<%=job._id  %>"
-              method="post"
-            >
-              <button name="edit_job" id="edit_job">
-                <i class="bi bi-check-circle"></i>
-              </button>
-            </form>
-            <form
-              action="/employers/admin/jobs/deleteJOB/<%=job._id  %>"
+              action="/employers/employersloggedinpage/deleteJOB/<%=job._id  %>"
               method="post"
             >
               <button name="deleate_job" id="deleate_job">
@@ -111,6 +182,12 @@
             <p id="job_loction" class="job_loction"><%=job.location %></p>
           </div>
           <div class="bottom_part">
+            <form
+              action="/employers/employersLoggedinPage/seeCandidate/<%=job._id  %> "
+              method="get"
+            >
+              <button class="see_candidates">ראה מועמדים</button>
+            </form>
             <button id="icon_linkdin" class="icon_buttons">
               <i class="bi bi-linkedin"></i>
             </button>
@@ -119,14 +196,10 @@
             </button>
           </div>
         </div>
-        <% }) %> <% }else{ %>
-        <h1 class="page-header">אין משרות הממתינות לאישור</h1>
-        <% } %>
       </div>
     </section>
-    <footer <% if(jobs.length<4){ %>
-      style="position:fixed;" <% } %>>
-      <a href="employers/admin">
+    <footer style="position: fixed">
+      <a href="/employers/employersloggedinpage">
         <svg
           class="site-logo"
           width="150"
@@ -154,12 +227,11 @@
         </svg>
       </a>
       <div class="footer-icons">
-        <a href="https://www.whatsapp.com/"><i class="bi bi-whatsapp"></i></a>
-        <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i></a>
+        <a href=""><i class="bi bi-whatsapp"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
-    <script src="index.js"></script>
   </body>
 </html>

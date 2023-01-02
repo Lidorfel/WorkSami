@@ -82,7 +82,7 @@
       </nav>
     </header>
     <section class="page-body">
-      <form class="studentUsers" id="studentUsers" name="studentUsers">
+      <div class="studentUsers" id="studentUsers" name="studentUsers">
         <div class="caption">
           <caption>
             סטודנטים
@@ -93,236 +93,111 @@
             <th>שם מלא</th>
             <th>ת"ז</th>
             <th>אימייל</th>
-            <th>כרטיס סטודנט</th>
+            <th>מס טלפון</th>
             <th></th>
             <th></th>
           </tr>
+          <% if(studentsArray.length>0){ %> <% studentsArray.forEach(stu=>{ %>
           <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
+            <td><%=stu.fullname %></td>
+            <td><%=stu.id %></td>
+            <td><%=stu.email %></td>
+            <td><%=stu.phone %></td>
             <td>
               <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
+                <% if(!stu.approved){ %>
+                <form
+                  action="/employers/admin/allUsers/student/<%=stu._id  %>"
+                  method="post"
+                >
+                  <button class="edit_job" name="edit_job" id="edit_job">
+                    <i class="bi bi-check-square"></i>
+                  </button>
+                </form>
+                <% }%>
+                <form
+                  action="/employers/admin/allUsers/DELstudent/<%=stu._id  %>"
+                  method="post"
+                >
+                  <button
+                    class="deleate_job"
+                    name="deleate_job"
+                    id="deleate_job"
+                  >
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </form>
               </div>
             </td>
           </tr>
-          <tr>
-            <td>לארי</td>
-            <td>207235988</td>
-            <td>developer@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
+          <% }) %> <% } %>
         </table>
-      </form>
-      <form class="employerUsers" id="employerUsers" name="employerUsers">
+      </div>
+      <div class="employerUsers" id="employerUsers" name="employerUsers">
         <div class="caption">
           <caption>
             מגייסים
           </caption>
         </div>
-
         <table>
           <tr>
             <th>שם מלא</th>
             <th>ת"ז</th>
             <th>אימייל</th>
-            <th>כרטיס סטודנט</th>
+            <th>מס פלאפון</th>
+            <th>לינקדין</th>
             <th></th>
             <th></th>
           </tr>
+          <% if(employersArray.length>0){ %> <% employersArray.forEach(emp=>{ %>
+          <% if(!emp.isadmin){ %>
           <tr>
-            <td>הילארי</td>
-            <td>318352978</td>
-            <td>tables@mail.com</td>
+            <td><%=emp.fullname %></td>
+            <td><%=emp.id %></td>
+            <td><%=emp.email %></td>
+            <td><%=emp.phone %></td>
             <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
+              <a
+                href="<%=emp.linkedin %>"
+                style="color: rgb(16, 66, 158)"
+                target="_blank"
+              >
+                קישור</a
+              >
             </td>
             <td>
               <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
+                <% if(!emp.approved){ %>
+                <form
+                  action="/employers/admin/allUsers/employer/<%=emp._id  %>"
+                  method="post"
+                >
+                  <button class="edit_job" name="edit_job" id="edit_job">
+                    <i class="bi bi-check-square"></i>
+                  </button>
+                </form>
+                <% } %>
+                <form
+                  action="/employers/admin/allUsers/DELemployer/<%=emp._id  %>"
+                  method="post"
+                >
+                  <button
+                    class="deleate_job"
+                    name="deleate_job"
+                    id="deleate_job"
+                  >
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </form>
               </div>
             </td>
-          </tr>
-          <tr>
-            <td>לארי</td>
-            <td>256684755</td>
-            <td>developer@mail.com</td>
-            <td>
-              <div class="upload_files">
-                <label for="image-upload"
-                  ><i class="bi bi-image-fill"
-                    ><input
-                      title="image-upload"
-                      type="file"
-                      id="image-upload"
-                      style="display: none" /></i
-                ></label>
-                <label class="word_pdf1"> קובץ png/jpg</label>
-              </div>
-            </td>
-            <td>
-              <div class="ApprovAndDeleteicon">
-                <button class="edit_job" name="edit_job" id="edit_job">
-                  <i class="bi bi-check-square"></i>
-                </button>
-
-                <button class="deleate_job" name="deleate_job" id="deleate_job">
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
-            </td>
+            <% } %> <% }) %> <% } %>
           </tr>
         </table>
-      </form>
+      </div>
     </section>
     <footer>
-      <a href="">
+      <a href="/employers/admin">
         <svg
           class="site-logo"
           width="150"
@@ -350,10 +225,10 @@
         </svg>
       </a>
       <div class="footer-icons">
-        <a href=""><i class="bi bi-whatsapp"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.whatsapp.com/"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
     <script src="index.js"></script>

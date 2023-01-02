@@ -109,44 +109,49 @@
       <div class="middle-line"></div>
       <div class="left-details">
         <div class="email-tel">
-          <h3>help@worksami.com</h3>
+          <h3>worksamisce@gmail.com</h3>
           <br />
           <h3>052-5381648</h3>
         </div>
         <i class="bi bi-telephone-inbound-fill"></i>
       </div>
     </section>
-    <form class="contact-details">
+    <form class="contact-details" action="/students/contact" method="post">
       <div class="person-details">
         <input
           type="text"
-          placeholder="שם פרטי"
-          name="person-firstname"
-          id="person-firstname"
+          placeholder="<%=stu.fullname  %>"
+          name="person_fullname"
+          id="person_fullname"
+          value="<%=stu.fullname  %>"
         />
         <input
           type="text"
-          placeholder="שם משפחה"
-          name="person-lastname"
-          id="person-lastname"
+          placeholder="<%=stu.phone  %>"
+          name="person_phone"
+          id="person_phone"
+          value="<%=stu.phone  %>"
         />
         <input
           type="text"
-          placeholder="אימייל חזרה"
-          name="person-"
-          id="person-"
+          placeholder="<%=stu.email  %>"
+          name="person_email"
+          id="person_email"
+          value="<%=stu.email  %>"
         />
       </div>
       <div class="contact-body">
         <label for="contact-body-text">גוף הפנייה</label>
         <textarea
-          name="contact-body-text"
-          title="contact-body-text"
-          id="contact-body-text"
+          placeholder="עד 255 תוים"
+          name="contact_body_text"
+          title="contact_body_text"
+          id="contact_body_text"
           cols="30"
           rows="10"
+          maxlength="255"
         ></textarea>
-        <a class="submit-btn" href="">שלח פנייה</a>
+        <button class="submit-btn">שלח פנייה</button>
       </div>
     </form>
     <footer>

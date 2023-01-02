@@ -15,11 +15,15 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="/styles/jobsApproval.css" />
+    <link rel="stylesheet" href="/styles/usersRequests.css" />
   </head>
+
   <body dir="rtl">
     <header class="main-header">
-      <nav class="items-shourcat">
+      <nav
+        class="items-shourcat"
+        style="font-family: 'Secular One', sans-serif"
+      >
         <div class="mainbaner">
           <a class="profile-page" href="">
             <i class="bi bi-person-circle"></i>
@@ -28,14 +32,15 @@
           <a class="nav-users-requests" href="/employers/admin/usersRequests">
             פניות משתמשים
           </a>
+
           <a class="nav-approve-jobs" href="/employers/admin/jobsApprove">
             אישור משרות
           </a>
-          <a class="njobsApprovalav-all-users" href="/employers/admin/allUsers"
-            >ניהול משתמשים</a
-          >
+          <a class="nav-all-users" href="/employers/admin/allUsers">
+            ניהול המשתמשים
+          </a>
           <form action="/employers/adminlogout" method="post">
-            <button class="logout">
+            <button class="logout" name="logout-admin" type="submit">
               התנתק <i class="bi bi-box-arrow-left"></i>
               <script type="text/javascript">
                 function preventBack() {
@@ -78,55 +83,54 @@
       </nav>
     </header>
     <section class="page-body">
-      <% if (jobs.length>0){ %>
-      <h1 class="page-header">משרות הממתינות לאישור</h1>
-      <div class="jobs">
-        <% jobs.forEach(job=>{ %>
-        <div class="works">
-          <div class="up_part">
-            <h1 name="name_job" id="name_job"><%=job.companyName %></h1>
+      <% if (reqArray.length>0){ %>
+      <h1 class="page-header">פניות מהמשתמשים</h1>
+      <% }else{ %>
+      <h1 class="page-header">אין פניות פתוחות</h1>
+      <% } %> <% reqArray.forEach(request=>{ %>
+      <div class="req-res">
+        <div class="req">
+          <div class="h3-delete">
+            <h3>פניה ממשתמש : <%=request.fullname %></h3>
             <form
-              action="/employers/admin/jobs/approveJOB/<%=job._id  %>"
+              action="/employers/admin/usersRequests/<%=request._id  %>"
               method="post"
             >
-              <button name="edit_job" id="edit_job">
-                <i class="bi bi-check-circle"></i>
-              </button>
-            </form>
-            <form
-              action="/employers/admin/jobs/deleteJOB/<%=job._id  %>"
-              method="post"
-            >
-              <button name="deleate_job" id="deleate_job">
+              <button type="submit" id="deleteRequest">
                 <i class="bi bi-trash-fill"></i>
               </button>
             </form>
           </div>
-          <div class="middle_part">
-            <label>תיאור המשרה:</label>
-            <p id="job-description"><%=job.description %></p>
-            <label>תחום עיסוק:</label>
-            <p id="job_type" class="job_type"><%=job.profession %></p>
-            <label>מיקום:</label>
-            <p id="job_loction" class="job_loction"><%=job.location %></p>
+          <br />
+          <div class="email-phone">
+            <h4><%=request.email %></h4>
+            <h4><%=request.phone %></h4>
           </div>
-          <div class="bottom_part">
-            <button id="icon_linkdin" class="icon_buttons">
-              <i class="bi bi-linkedin"></i>
-            </button>
-            <button id="home_page_web" class="icon_buttons">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </div>
+          <br />
+          <h4>גוף הפנייה:</h4>
+          <p><%=request.reqBody %></p>
         </div>
-        <% }) %> <% }else{ %>
-        <h1 class="page-header">אין משרות הממתינות לאישור</h1>
-        <% } %>
+        <div class="res">
+          <form
+            action="/employers/admin/usersRequests/sendEmail/<%=request._id  %>"
+            method="post"
+          >
+            <label for="adminRespond">תשובה לפנייה</label>
+            <textarea
+              name="adminRespond"
+              id="adminRespond"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <button type="submit">תשובה למייל</button>
+          </form>
+        </div>
       </div>
+      <% }) %>
     </section>
-    <footer <% if(jobs.length<4){ %>
-      style="position:fixed;" <% } %>>
-      <a href="employers/admin">
+    <footer <% if(reqArray.length>
+      1){ %> style="position:relative;" <% } %>>
+      <a href="/employers/admin">
         <svg
           class="site-logo"
           width="150"
@@ -160,6 +164,5 @@
         <a href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i></a>
       </div>
     </footer>
-    <script src="index.js"></script>
   </body>
 </html>
