@@ -193,6 +193,7 @@ nav a {
   margin-top: 15px;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
 }
 .submit-btn:hover {
   background: #148012;
