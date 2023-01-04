@@ -75,6 +75,12 @@ body {
   position: relative;
   background-color: #ebe8e8;
 }
+.page-header {
+  margin-top: 6%;
+  font-family: "Secular One", sans-serif;
+  font-size: 3rem;
+  text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.35);
+}
 .page_body {
   margin-top: 85px;
   display: flex;

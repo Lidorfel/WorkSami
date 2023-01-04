@@ -133,7 +133,12 @@ router.get("/studentMainPage", (req, res) => {
           }
           return 0;
         });
-
+        for (let i = 0; i < li.length; i++) {
+          if (user.likedJobs.includes(li[i]._id)) {
+            console.log(li[i]);
+            li.unshift(li.splice(i, 1)[0]);
+          }
+        }
         res.render("./students/studentMainPage", {
           jobsArray: li,
           likedJobs: user.likedJobs,

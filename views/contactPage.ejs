@@ -104,37 +104,39 @@
         <i class="bi bi-telephone-inbound-fill"></i>
       </div>
     </section>
-    <form class="contact-details">
+    <form class="contact-details" method="post" action="/contact">
       <div class="person-details">
         <input
           type="text"
-          placeholder="שם פרטי"
-          name="person-firstname"
-          id="person-firstname"
+          placeholder="שם מלא"
+          name="person_fullname"
+          id="person_fullname"
         />
         <input
           type="text"
-          placeholder="שם משפחה"
-          name="person-lastname"
-          id="person-lastname"
+          placeholder="מס טלפון"
+          name="person_phone"
+          id="person_phone"
         />
         <input
           type="text"
           placeholder="אימייל חזרה"
-          name="person-"
-          id="person-"
+          name="person_email"
+          id="person_email"
         />
       </div>
       <div class="contact-body">
         <label for="contact-body-text">גוף הפנייה</label>
         <textarea
-          name="contact-body-text"
-          title="contact-body-text"
-          id="contact-body-text"
+          placeholder="עד 255 תוים"
+          name="contact_body_text"
+          title="contact_body_text"
+          id="contact_body_text"
           cols="30"
           rows="10"
+          maxlength="255"
         ></textarea>
-        <a class="submit-btn" href="">שלח פנייה</a>
+        <button class="submit-btn" type="submit">שלח פנייה</button>
       </div>
     </form>
     <footer>

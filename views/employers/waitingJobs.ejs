@@ -81,66 +81,22 @@
       </nav>
     </header>
     <section class="page_body">
-      <form method="post" action="./employersLoggedinPage" class="add_job">
-        <h1 style="color: black">הוספת עבודה:</h1>
-        <label>שם החברה</label>
-        <div class="add_pro">
-          <input
-            name="name_job"
-            id="name_job"
-            type="text"
-            class="name_com"
-            required=""
-          />
-        </div>
-        <label> תיאור המשרה</label>
-        <div class="add_pro">
-          <input
-            name="describe_job"
-            id="describe_job"
-            type="text"
-            class="describe_job"
-            name="describe_job"
-            required=""
-          />
-        </div>
-        <div class="selection">
-          <div class="add_pro_select">
-            <label> תחום עיסוק</label>
-            <select name="job_type" id="job_type" class="job_type">
-              <option value="הנדסת תוכנה">הנדסת תוכנה</option>
-              <option value="הנדסת חשמל">הנדסת חשמל</option>
-              <option value="הנדסת תעשיה וניהול">הנדסת תעשיה וניהול</option>
-              <option value="הנדסת בניין">הנדסת בניין</option>
-              <option value="מדעי המחשב">מדעי המחשב</option>
-              <option value="אדריכלות">אדריכלות</option>
-              <option value="תקשורת חזותית">תקשורת חזותית</option>
-            </select>
-          </div>
-          <div class="add_pro_select">
-            <label for="location"> מיקום </label>
-            <select name="location" id="location" class="location">
-              <option value="איזור הדרום">איזור הדרום</option>
-              <option value="איזור המרכז">איזור המרכז</option>
-              <option value="איזור הצפון">איזור הצפון</option>
-              <option value="איזור השפלה">איזור השפלה</option>
-            </select>
-          </div>
-        </div>
-        <button id="button_add" class="button_add">הוספת משרה+</button>
-      </form>
+      <% if (jobs.length>0){ %>
+      <h1 class="page-header" style="margin-top: 15px">
+        משרות הממתינות לאישור
+      </h1>
       <div class="all_jobs">
-        <% if (jobs.length>0){ %> <% jobs.forEach(job=>{ %>
+        <% jobs.forEach(job=>{ %>
         <div class="works">
           <h5
             style="
-              color: green;
+              color: blue;
               display: flex;
               justify-content: center;
               align-items: center;
             "
           >
-            מאושר
+            ממתין לאישור
           </h5>
           <div class="up_part">
             <h1 name="name_job" id="name_job"><%=job.companyName %></h1>
@@ -196,7 +152,11 @@
             </a>
           </div>
         </div>
-        <% }) %> <% } %>
+        <% }) %> <% }else{ %>
+        <h1 class="page-header" style="margin-top: 15px">
+          אין משרות הממתינות לאישור
+        </h1>
+        <% } %>
       </div>
     </section>
     <footer <% if(jobs.length<4){ %>

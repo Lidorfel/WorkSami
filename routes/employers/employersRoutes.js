@@ -67,7 +67,7 @@ router.get("/employersLoggedinPage", async (req, res) => {
       const jobsRef = job.db.collection("jobs");
       jobsRef.find().toArray((err, jobsArray) => {
         jobsArray.forEach((job) => {
-          if (user.jobsPosted.includes(job._id)) {
+          if (user.jobsPosted.includes(job._id) && job.approved) {
             li.push(job);
           }
         });
@@ -90,6 +90,38 @@ router.get("/employersLoggedinPage", async (req, res) => {
     res.redirect("./");
   }
 });
+
+router.get("/waitingJobs", async (req, res) => {
+  if (session) {
+    let li = [];
+    employer.findOne({ email: session.userid }).then((user) => {
+      const jobsRef = job.db.collection("jobs");
+      jobsRef.find().toArray((err, jobsArray) => {
+        jobsArray.forEach((job) => {
+          if (user.jobsPosted.includes(job._id) && !job.approved) {
+            li.push(job);
+          }
+        });
+        li.sort((a, b) => {
+          if (a.updatedAt > b.updatedAt) {
+            return -1;
+          }
+          if (a.updatedAt < b.updatedAt) {
+            return 1;
+          }
+          return 0;
+        });
+        res.render("./employers/waitingJobs", {
+          jobs: li,
+          emp: user,
+        });
+      });
+    });
+  } else {
+    res.redirect("./");
+  }
+});
+
 router.post("/registerEm", async (req, res) => {
   employer.db
     .collection("employers")
@@ -642,4 +674,5 @@ router.post("/admin/usersRequests/sendEmail/:id", (req, res) => {
     res.redirect("./");
   }
 });
+
 module.exports = router;

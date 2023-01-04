@@ -10,6 +10,7 @@ const { object } = require("webidl-conversions");
 const { ObjectID } = require("bson");
 const { findById } = require("./models/Students");
 const student = require("./models/Students");
+const request = require("./models/request");
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
 const app = express();
@@ -56,7 +57,6 @@ app.get("/", (req, res) => {
         numJobs++;
       }
     });
-    console.log(`numJobs:${numJobs}`);
     const studentRef = db.collection("students");
     studentRef.find().toArray((err, students) => {
       numUsers = students.length;
@@ -65,7 +65,6 @@ app.get("/", (req, res) => {
           numFoundJob++;
         }
       });
-      console.log(`numFoundJob:${numFoundJob}, numUsers:${numUsers}`);
       res.render("mainPage", {
         numJobs: numJobs,
         numFoundJob: numFoundJob,
@@ -76,6 +75,33 @@ app.get("/", (req, res) => {
 });
 app.get("/contact", (req, res) => {
   res.render("contactPage");
+});
+app.post("/contact", (req, res) => {
+  console.log(req.body);
+  if (
+    req.body.contact_body_text.length > 0 &&
+    req.body.person_email.length > 0 &&
+    req.body.person_phone.length > 0 &&
+    req.body.person_fullname.length > 0
+  ) {
+    request.db
+      .collection("requests")
+      .insertOne({
+        email: req.body.person_email,
+        phone: req.body.person_phone,
+        fullname: req.body.person_fullname,
+        reqBody: req.body.contact_body_text,
+      })
+      .then((r) => {
+        console.log("request created " + r._id);
+        res.redirect("/");
+      })
+      .catch((err) => {
+        console.log("request failed " + err);
+      });
+  } else {
+    res.redirect("/contact");
+  }
 });
 app.use("/employers", employerRoutes);
 app.use("/students", studentRoutes);
