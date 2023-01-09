@@ -123,7 +123,7 @@ router.get("/waitingJobs", async (req, res) => {
 });
 
 router.post("/registerEm", async (req, res) => {
-  employer.db
+  await employer.db
     .collection("employers")
     .insertOne({
       fullname: req.body.fullname,

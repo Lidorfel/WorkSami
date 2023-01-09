@@ -13,27 +13,69 @@ function checkNull(object1) {
     object1.grades !== null
   );
 }
+function checkNullJob(object1) {
+  return (
+    object1.describe_job !== null &&
+    object1.job_type !== null &&
+    object1.location !== null
+  );
+}
+const dbURI =
+  "mongodb+srv://bugab:test1234@worksami.1vddn1h.mongodb.net/WorkSamiweb?retryWrites=true&w=majority";
+let db = mongoose.connection;
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((res) => {
+    console.log("connected to db + listing to port 3000");
+  })
+  .catch((err) => console.log(err));
 
+
+//התחברות סטודנט
 describe("POST /students/loginSt", () => {
   describe("when passed a username and password", () => {
-    test("should respond with a 200 status code", async () => {
+    test("should respond with a 302 status code", async () => {
       const response = await request(app).post("/students/loginSt").send({
-        email: "ldi@gmail.com",
+        email: "yoni1345@gmail.com",
+        password: "123456",
+      });
+      expect(response.statusCode).toBe(302);
+    });
+  });
+});
+//התחברות מעסיק
+describe("POST /employers/loginEm", () => {
+  describe("when passed a username and password", () => {
+    test("should respond with a 200 status code", async () => {
+      const response = await request(app).post("/employers/loginEm").send({
+        email: "tal@gmail.com",
         password: "123456789",
       });
       expect(response.statusCode).toBe(302);
     });
   });
 });
-
+//התחברות אדמין
+describe("POST /employers/loginEm", () => {
+  describe("when passed a username and password", () => {
+    test("should respond with a 200 status code", async () => {
+      const response = await request(app).post("/employers/loginEm").send({
+        email: "worksami@gmail.com",
+        password: "admin123456",
+      });
+      expect(response.statusCode).toBe(302);
+    });
+  });
+});
+//עדכון פרטי סטודנט
 describe("POST /students/studentsUpdate", () => {
   it("Should be status code 500 because it should not updated without the session TOKEN recieved from user login, and checking side function that checks the value of the details passed,return true if value is good", async () => {
     const details = {
-      password: "147258",
-      phone: "0542147578",
-      email: "newmailtest@gmail.com",
-      status: "year3",
-      avg: "76",
+      new_password: "147258",
+      phone_number: "0542147578",
+      email: "yoni1345@gmail.com",
+      study_year: "year3",
+      avrage_grade: "76",
     };
     const updateUser = await request(app)
       .post("/students/studentsUpdate")
@@ -43,7 +85,7 @@ describe("POST /students/studentsUpdate", () => {
     expect(checkNull({ new_password: null })).toBe(false);
   });
 });
-
+//התנתקות אדמין
 describe("POST /employers/admin", () => {
   it("admin logout - should return status code 302,which means admin logged out successfully and got redirected to the main page which sends the code 302", async () => {
     const user = await request(app).post("/employers/admin").send({
@@ -53,7 +95,27 @@ describe("POST /employers/admin", () => {
     expect(user.statusCode).toBe(302);
   });
 });
-
+//התנתקות סטודנט
+describe("POST /students/logout", () => {
+  it("student logout - should return status code 302,which means students logged out successfully and got redirected to the main page which sends the code 302", async () => {
+    const user = await request(app).post("/students/logout").send({
+      email: "yoni1345@gmail.com",
+      password: "123456",
+    });
+    expect(user.statusCode).toBe(302);
+  });
+});
+//התנתקות מעסיק 
+describe("POST /employers/logoutemployer", () => {
+  it("employers logout - should return status code 302,which means employers logged out successfully and got redirected to the main page which sends the code 302", async () => {
+    const user = await request(app).post("/employers/logoutemployer").send({
+      email: "tal@gmail.com",
+      password: "123456789",
+    });
+    expect(user.statusCode).toBe(302);
+  });
+});
+//הלעאת משרה מעסיק
 describe("POST /employers/employersLoggedinPage", () => {
   it("Checking side function that checks the value of the details passed,return true if value is good, if passed so the job was succcessfully added to database", () => {
     // jest.setTimeout(12000);
@@ -72,7 +134,26 @@ describe("POST /employers/employersLoggedinPage", () => {
     expect(checkNull({ new_password: null })).toBe(false);
   });
 });
-
+//הלעאת משרה אדמין
+describe("POST /employers/admin", () => {
+  it("Checking side function that checks the value of the details passed,return true if value is good, if passed so the job was succcessfully added to database", () => {
+    // jest.setTimeout(12000);
+    const details = {
+      name_job: "wix",
+      describe_job: "ux/ui",
+      job_type: "ux/ui",
+      location: "Ahora",
+      approved: true,
+      candidates: [],
+    };
+    const newJob = request(app)
+      .post("/employers/admin")
+      .send(details);
+    expect(checkNull(details)).toBe(true);
+    expect(checkNull({ new_password: null })).toBe(false);
+  });
+});
+// בדיקת דף ראשי
 describe("it should respons home page", () => {
   test("should return status code of 200", (done) => {
     request(app)
@@ -83,7 +164,7 @@ describe("it should respons home page", () => {
       });
   });
 });
-
+// הרשמה סטודנט
 describe("POST /students/registerSt", () => {
   it("Should be status code 302, which means user created successfully and got redirected to the desire page", async () => {
     const newUser = await request(app).post("/students/registerSt").send({
@@ -103,7 +184,7 @@ describe("POST /students/registerSt", () => {
     expect(newUser.text).toBe("Found. Redirecting to /students/loginSt");
   });
 });
-
+// הרשמה מעסיק
 describe("POST /employers/registerEm", () => {
   it("Should be status code 302, which means user updated his details successfully and got redirected to the desire page", async () => {
     const newUser = await request(app).post("/employers/registerEm").send({
@@ -122,5 +203,87 @@ describe("POST /employers/registerEm", () => {
     });
     expect(newUser.statusCode).toBe(302);
     expect(newUser.text).toBe("Found. Redirecting to /employers/loginEm");
+  });
+});
+//עדכון פרטי מעסיק
+describe("POST /employers/employersUpdate", () => {
+  it("Should be status code 500 because it should not updated without the session TOKEN recieved from user login, and checking side function that checks the value of the details passed,return true if value is good", async () => {
+    const details = {
+      new_password: "147258",
+      phone_number: "0542147578",
+      email: "newmailtest@gmail.com",
+      urlcompany: "https://www.google.com",
+      linkedin: "https://www.instagram.com",
+    };
+    const updateUser = await request(app)
+      .post("/employers/employersUpdate")
+      .send(details);
+    expect(updateUser.status).toBe(500);
+    expect(checkNull(details)).toBe(true);
+    expect(checkNull({ new_password: null })).toBe(false);
+  });
+});
+//  בדיקת דף משרות של מעסיק
+describe("it should respons employers main page", () => {
+  test("should return status code of 302 because user is not logged in so session TOKEN is not found", (done) => {
+    request(app)
+      .get("/employers/employersloggedinpage")
+      .then((response) => {
+        expect(response.statusCode).toBe(302);
+        done();
+      });
+  });
+});
+//עדכון משרה מעסיק
+describe("POST /employers/employersloggedinpage/updateJOB/:id", () => {
+  it("Should be status code 302 because it should not updated the job without the session TOKEN recieved from user login, and checking side function that checks the value of the details passed,return true if value is good", async () => {
+    const details = {
+      describe_job: "wix",
+      job_type: "software",
+      location: "North ",
+    };
+    const updateJob = await request(app)
+      .post("/employers/employersloggedinpage/updateJOB/63ac3c2251874bff78b5f3df")
+      .send(details);
+    expect(updateJob.status).toBe(302);
+    expect(checkNullJob(details)).toBe(true);
+    expect(checkNullJob({ describe_job: null })).toBe(false);
+  });
+});
+// דף יצירת קשר עם מועמדים למשרה
+describe("it should respons to seeCandidates page ", () => {
+  test("should return status code of 302, because there is no TOKEN session", (done) => {
+    request(app)
+      .get("/employers/employersLoggedinPage/seeCandidate/63ac3c2251874bff78b5f3df")
+      .then((response) => {
+        expect(response.statusCode).toBe(302);
+        done();
+      });
+  });
+});
+// דף של משרות לא מאושרות של מגייס
+describe("it should respons to waitingJobs page ", () => {
+  test("should return status code of 302, because there is no TOKEN session", (done) => {
+    request(app)
+      .get("/employers/waitingJobs")
+      .then((response) => {
+        expect(response.statusCode).toBe(302);
+        done();
+      });
+  });
+});
+// בקשת עזרה של מגייס מאדמין
+describe("POST /employers/contact", () => {
+  it("it should respond status code 404 because there is no TOKEN session so the page is not found", async () => {
+    const details = {
+      person_email: "testmail@gmail.com",
+      person_phone: "0525381648",
+      person_fullname: "Moti Luhim",
+      contact_body_text:"REQUEST BODY HELP ME"
+    };
+    const sendRequest = await request(app)
+      .post("employers/contact")
+      .send(details);
+    expect(sendRequest.status).toBe(404);
   });
 });
