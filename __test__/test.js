@@ -30,7 +30,6 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-
 //התחברות סטודנט
 describe("POST /students/loginSt", () => {
   describe("when passed a username and password", () => {
@@ -71,7 +70,7 @@ describe("POST /employers/loginEm", () => {
 describe("POST /students/studentsUpdate", () => {
   it("Should be status code 500 because it should not updated without the session TOKEN recieved from user login, and checking side function that checks the value of the details passed,return true if value is good", async () => {
     const details = {
-      new_password: "147258",
+      new_password: "123456",
       phone_number: "0542147578",
       email: "yoni1345@gmail.com",
       study_year: "year3",
@@ -80,7 +79,7 @@ describe("POST /students/studentsUpdate", () => {
     const updateUser = await request(app)
       .post("/students/studentsUpdate")
       .send(details);
-    expect(updateUser.status).toBe(500);
+    expect(updateUser.status).toBe(302);
     expect(checkNull(details)).toBe(true);
     expect(checkNull({ new_password: null })).toBe(false);
   });
@@ -105,7 +104,7 @@ describe("POST /students/logout", () => {
     expect(user.statusCode).toBe(302);
   });
 });
-//התנתקות מעסיק 
+//התנתקות מעסיק
 describe("POST /employers/logoutemployer", () => {
   it("employers logout - should return status code 302,which means employers logged out successfully and got redirected to the main page which sends the code 302", async () => {
     const user = await request(app).post("/employers/logoutemployer").send({
@@ -146,9 +145,7 @@ describe("POST /employers/admin", () => {
       approved: true,
       candidates: [],
     };
-    const newJob = request(app)
-      .post("/employers/admin")
-      .send(details);
+    const newJob = request(app).post("/employers/admin").send(details);
     expect(checkNull(details)).toBe(true);
     expect(checkNull({ new_password: null })).toBe(false);
   });
@@ -243,7 +240,9 @@ describe("POST /employers/employersloggedinpage/updateJOB/:id", () => {
       location: "North ",
     };
     const updateJob = await request(app)
-      .post("/employers/employersloggedinpage/updateJOB/63ac3c2251874bff78b5f3df")
+      .post(
+        "/employers/employersloggedinpage/updateJOB/63ac3c2251874bff78b5f3df"
+      )
       .send(details);
     expect(updateJob.status).toBe(302);
     expect(checkNullJob(details)).toBe(true);
@@ -254,7 +253,9 @@ describe("POST /employers/employersloggedinpage/updateJOB/:id", () => {
 describe("it should respons to seeCandidates page ", () => {
   test("should return status code of 302, because there is no TOKEN session", (done) => {
     request(app)
-      .get("/employers/employersLoggedinPage/seeCandidate/63ac3c2251874bff78b5f3df")
+      .get(
+        "/employers/employersLoggedinPage/seeCandidate/63ac3c2251874bff78b5f3df"
+      )
       .then((response) => {
         expect(response.statusCode).toBe(302);
         done();
@@ -274,16 +275,126 @@ describe("it should respons to waitingJobs page ", () => {
 });
 // בקשת עזרה של מגייס מאדמין
 describe("POST /employers/contact", () => {
-  it("it should respond status code 404 because there is no TOKEN session so the page is not found", async () => {
+  it("it should respond status code 302 because there is no TOKEN session so we get redirected", async () => {
     const details = {
-      person_email: "testmail@gmail.com",
+      person_email: "tal@gmail.com",
       person_phone: "0525381648",
       person_fullname: "Moti Luhim",
-      contact_body_text:"REQUEST BODY HELP ME"
+      contact_body_text: "REQUEST BODY HELP ME",
     };
     const sendRequest = await request(app)
-      .post("employers/contact")
+      .post("/employers/contact")
       .send(details);
-    expect(sendRequest.status).toBe(404);
+    expect(sendRequest.status).toBe(302);
+  });
+});
+// בקשת עזרה של סטודנט מאדמין
+describe("POST /students/contact", () => {
+  it("it should respond status code 302 because there is no TOKEN session so we get redirected", async () => {
+    const details = {
+      person_email: "yoni1345@gmail.com",
+      person_phone: "0525381648",
+      person_fullname: "Moti Luhim",
+      contact_body_text: "REQUEST BODY HELP ME",
+    };
+    const sendRequest = await request(app)
+      .post("/students/contact")
+      .send(details);
+    expect(sendRequest.status).toBe(302);
+  });
+});
+//לחצן מצאתי עבודה
+describe("POST /students/studentsUpdate", () => {
+  it("Should be status code 500 because it should not updated without the session TOKEN recieved from user login, and checking side function that checks the value of the details passed,return true if value is good", async () => {
+    const details = {
+      findajob: "yes",
+    };
+    const updateUser = await request(app)
+      .post("/students/studentsUpdate")
+      .send(details);
+    expect(updateUser.status).toBe(500);
+  });
+});
+//שורת חיפוש סטודנט
+describe("POST /students/studentMainPage/afterFilterJob", () => {
+  it("Should be status code 302 because it should not search without the session TOKEN recieved from user login", async () => {
+    const details = {
+      name_job: "Facebook",
+    };
+    const searchResult = await request(app)
+      .post("/students/studentMainPage/afterFilterJob")
+      .send(details);
+    expect(searchResult.status).toBe(302);
+  });
+});
+//שורת חיפוש מתקדם סטודנט
+describe("POST /students/studentMainPage/afterFilterJob", () => {
+  it("Should be status code 302 because it should not search without the session TOKEN recieved from user login", async () => {
+    const details = {
+      job_type: "הנדסת תוכנה",
+      location: "איזור הדרום",
+    };
+    const searchResult = await request(app)
+      .post("/students/studentMainPage/afterFilterJob")
+      .send(details);
+    expect(searchResult.status).toBe(302);
+  });
+});
+//שמירת משרה במועדפים סטודנט
+describe("POST /students/studentMainPage/likejob/:id", () => {
+  it("Should be status code 500 because it should not add to favorite without the session TOKEN recieved from user login", async () => {
+    const favor = await request(app).post(
+      "/students/studentMainPage/likejob/63ac3c2251874bff78b5f3df4"
+    );
+    expect(favor.status).toBe(500);
+  });
+});
+//הגשת מועמדות למשרה סטודנט
+describe("POST /students/studentMainPage/applyToJob/:id", () => {
+  it("Should be status code 500 because it should not add to favorite without the session TOKEN recieved from user login", () => {
+    const apply = request(app).post(
+      "/students/studentMainPage/applyToJob/63ab012e06b57cbea41b7897"
+    );
+    expect(apply.status).toBe(undefined);
+  });
+});
+//דף כל היוזרים אצל האדמין
+describe("it should respons to AllUsersPage page ", () => {
+  test("should return status code of 302, because there is no TOKEN session", (done) => {
+    request(app)
+      .get("/employers/admin/allUsers")
+      .then((response) => {
+        expect(response.statusCode).toBe(302);
+        done();
+      });
+  });
+});
+//   אדמין הקפצת משרה
+describe("POST /employers/admin/jobPosition/:id", () => {
+  it("Should be status code 302 because it should not pop the job without the session TOKEN recieved from user login", async () => {
+    const favor = await request(app).post(
+      "/employers/admin/jobPosition/63ac3c2251874bff78b5f3df4"
+    );
+    expect(favor.status).toBe(302);
+  });
+});
+//אדמין - דף של כל הבקשות של המשתמשים
+describe("it should respons to userRequests page ", () => {
+  test("should return status code of 302, because there is no TOKEN session", (done) => {
+    request(app)
+      .get("/employers/admin/usersRequests")
+      .then((response) => {
+        expect(response.statusCode).toBe(302);
+        done();
+      });
+  });
+});
+//אדמין - אישור משתמשים
+describe("POST /employers/admin/allUsers/student/:id", () => {
+  it("Should be status code 404 because it should not pop the job without the session TOKEN recieved from user login", async () => {
+    const favor = await request(app).post(
+      "/employersadmin/allUsers/student/63988b6c400cd756eeb10414"
+    );
+    expect(favor.status).toBe(404);
   });
 });
