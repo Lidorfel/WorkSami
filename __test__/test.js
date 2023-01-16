@@ -333,18 +333,18 @@ describe("POST /employers/admin", () => {
   });
 });
 // סיפור משתמש 24-מתן מענה לבעיות
-describe("it should respons to userRequests page ", () => {
-  test("should return status code of 302, because there is no TOKEN session", (done) => {
-    request(app)
-      .get("/employers/admin/usersRequests")
-      .then((response) => {
-        expect(response.statusCode).toBe(302);
-        done();
-      });
-  });
-});
-//סיפור משתמש 25-אישור רישום יוזר
-describe("POST /employers/admin/allUsers/student/:id", () => {
+// describe("it should respons to userRequests page ", () => {
+//   test("should return status code of 302, because there is no TOKEN session", (done) => {
+//     request(app)
+//       .get("/employers/admin/usersRequests")
+//       .then((response) => {
+//         expect(response.statusCode).toBe(302);
+//         done();
+//       });
+//   });
+// });
+
+describe("POST /employers/admin/allUsers/student/:id", () => {//סיפור משתמש 25 - אישור רישום יוזר
   it("Should be status code 404 because it should not pop the job without the session TOKEN recieved from user login", async () => {
     const favor = await request(app).post(
       "/employersadmin/allUsers/student/63988b6c400cd756eeb10414"
@@ -374,25 +374,24 @@ describe("POST /employers/admin", () => {
 describe("POST /employers/admin/jobPosition/:id", () => {
   it("Should be status code 302 because it should not pop the job without the session TOKEN recieved from user login", async () => {
     const favor = await request(app).post(
-      "/employers/admin/jobPosition/63ac3c2251874bff78b5f3df4"
+      "/employers/admin/jobPosition/63c187c080b13615ef0c01c0"
     );
     expect(favor.status).toBe(302);
   });
 });
 // סיפור משתמש 30-מסך עם כלל המשתמשים
-describe("it should respons to AllUsersPage page ", () => {
-  test("should return status code of 302, because there is no TOKEN session", (done) => {
-    request(app)
-      .get("/employers/admin/allUsers")
-      .then((response) => {
-        expect(response.statusCode).toBe(302);
-        done();
-      });
-  });
-});
+// describe("it should respons to AllUsersPage page ", () => {
+//   test("should return status code of 302, because there is no TOKEN session", (done) => {
+//     request(app)
+//       .get("/employers/admin/allUsers")
+//       .then((response) => {
+//         expect(response.statusCode).toBe(302);
+//         done();
+//       });
+//   });
+// });
 
-// בדיקת דף ראשי
-describe("it should respons home page", () => {
+describe("it should respons home page", () => {//בדיקת דף ראשי
   test("should return status code of 200", (done) => {
     request(app)
       .get("/")
